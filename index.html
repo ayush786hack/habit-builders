@@ -1,0 +1,564 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>We Are Habit Builders</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/dashboard-popup.css">
+    <link rel="stylesheet" href="css/mentor-popup.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Optimizations for smooth scrolling */
+        .journey-timeline {
+            will-change: transform;
+            transform: translateZ(0);
+            backface-visibility: hidden;
+            perspective: 1000px;
+        }
+        
+        .timeline-item {
+            will-change: transform, opacity;
+            transform: translateZ(0);
+            backface-visibility: hidden;
+            transition: transform 0.3s ease-out, opacity 0.3s ease-out;
+        }
+        
+        /* Optimize image loading */
+        .timeline-img img {
+            will-change: transform;
+            transform: translateZ(0);
+            backface-visibility: hidden;
+        }
+        
+        /* Add hardware acceleration */
+        .journey {
+            transform: translateZ(0);
+            backface-visibility: hidden;
+            perspective: 1000px;
+        }
+        
+        /* Optimizations for Why Choose Us section */
+        .features-container {
+            will-change: transform;
+            transform: translateZ(0);
+            backface-visibility: hidden;
+            perspective: 1000px;
+        }
+        
+        .feature-card {
+            will-change: transform, opacity;
+            transform: translateZ(0);
+            backface-visibility: hidden;
+            transition: transform 0.3s ease-out, opacity 0.3s ease-out, box-shadow 0.3s ease-out;
+        }
+        
+        .feature-icon {
+            will-change: transform;
+            transform: translateZ(0);
+            backface-visibility: hidden;
+        }
+        
+        .features {
+            transform: translateZ(0);
+            backface-visibility: hidden;
+            perspective: 1000px;
+        }
+
+        .journey-section {
+            padding: 80px 0;
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+        }
+
+        /* Earning System Styles */
+        .earning-system {
+            padding: 80px 0;
+            background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
+        }
+
+        .earning-steps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .earning-step {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            text-align: center;
+        }
+
+        .earning-step:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+        }
+
+        .step-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #007bff 0%, #0056b3 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+        }
+
+        .step-icon i {
+            font-size: 24px;
+            color: white;
+        }
+
+        .earning-step h3 {
+            color: #333;
+            margin-bottom: 15px;
+            font-size: 1.2rem;
+        }
+
+        .earning-step p {
+            color: #666;
+            margin-bottom: 15px;
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+
+        .earning-step ul {
+            text-align: left;
+            padding-left: 20px;
+            margin-top: 10px;
+        }
+
+        .earning-step ul li {
+            color: #666;
+            margin-bottom: 8px;
+            font-size: 0.9rem;
+            line-height: 1.4;
+        }
+
+        @media (max-width: 768px) {
+            .earning-steps {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+
+            .earning-step {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="logo">
+                <span class="logo-text">We Are Habit Builders</span>
+            </div>
+            <div class="menu-toggle">
+                <i class="fas fa-bars"></i>
+            </div>
+            <ul class="nav-links">
+                <li><a href="index.html" class="active">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="services.html">Services</a></li>
+                <li><a href="goal-setting.html">Goal Setting</a></li>
+                <li><a href="rewards.html">Rewards</a></li>
+                <li><a href="redeem-coins.html">Redeem Coins</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section class="hero">
+            <div class="hero-content">
+                <div class="hero-left">
+                    <h1 class="animated-title">We Are <span>Habit Builders</span></h1>
+                    <p>Transform your life one habit at a time. Join our community of achievers who are building better habits every day.</p>
+                    <div class="hero-buttons">
+                        <a href="#journey" class="btn btn-primary">Start Your Journey</a>
+                        <a href="about.html" class="btn btn-secondary">Learn More</a>
+                    </div>
+                </div>
+                <div class="hero-right">
+                    <div class="auth-container">
+                        <div class="auth-tabs">
+                            <button class="tab-btn active" data-tab="login">Login</button>
+                            <button class="tab-btn" data-tab="register">Register</button>
+                        </div>
+                        <div class="auth-content">
+                            <div class="tab-panel active" id="login">
+                                <form class="auth-form" id="login-form">
+                                    <div class="form-group">
+                                        <label for="login-email">Email</label>
+                                        <input type="email" id="login-email" name="email" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="login-password">Password</label>
+                                        <input type="password" id="login-password" name="password" required>
+                                    </div>
+                                    <button type="submit" class="btn btn-primary">Login</button>
+                                    <p class="form-note">Forgot password? <a href="reset-password.html">Reset it</a></p>
+                                </form>
+                            </div>
+                            <div class="tab-panel" id="register">
+                                <form class="auth-form" id="register-form">
+                                    <div class="form-group">
+                                        <label for="register-name">Full Name</label>
+                                        <input type="text" id="register-name" name="name" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="register-email">Email</label>
+                                        <input type="email" id="register-email" name="email" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="register-password">Password</label>
+                                        <input type="password" id="register-password" name="password" required>
+                                    </div>
+                                    <button type="submit" class="btn btn-primary">Register</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="journey" class="journey">
+            <h2 class="section-title">Your Transformation Journey</h2>
+            <div class="journey-timeline">
+                <div class="timeline-item">
+                    <div class="timeline-img">
+                        <img src="images/1.png" alt="Start of journey">
+                    </div>
+                    <div class="timeline-content">
+                        <h3>The Decision</h3>
+                        <p>Every great journey begins with a decision to change. Today is your Day 1.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-img">
+                        <img src="images/2.png" alt="Setting goals">
+                    </div>
+                    <div class="timeline-content">
+                        <h3>Setting Your Goals</h3>
+                        <p>You are curious, motivated, and have a world of possibilities ahead. Select your top 5 priority tasks and set them in the app to start your journey toward success.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-img">
+                        <img src="images/3.png" alt="Building routine">
+                    </div>
+                    <div class="timeline-content">
+                        <h3>Building Your Routine</h3>
+                        <p>Establish a daily routine that incorporates your new habits.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-img">
+                        <img src="images/4.png" alt="Overcoming challenges">
+                    </div>
+                    <div class="timeline-content">
+                        <h3>Overcoming Challenges</h3>
+                        <p>Learn strategies to overcome obstacles and stay consistent.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-img">
+                        <img src="images/5.png" alt="Tracking progress">
+                    </div>
+                    <div class="timeline-content">
+                        <h3>Tracking Your Progress</h3>
+                        <p>Celebrate small wins and visualize your progress.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-img">
+                        <img src="images/6.png" alt="Accountability">
+                    </div>
+                    <div class="timeline-content">
+                        <h3>Building Accountability</h3>
+                        <p>Join communities and create accountability systems.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-img">
+                        <img src="images/7.png" alt="New identity">
+                    </div>
+                    <div class="timeline-content">
+                        <h3>Forming Your New Identity</h3>
+                        <p>Your habits become who you are. Embrace your new identity.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-img">
+                        <img src="images/8.png" alt="Mastery">
+                    </div>
+                    <div class="timeline-content">
+                        <h3>Mastery</h3>
+                        <p>What was once difficult is now second nature. You've mastered your habits.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-img">
+                        <img src="images/9.png" alt="Transformation complete">
+                    </div>
+                    <div class="timeline-content">
+                        <h3>Beyond: Continuous Growth</h3>
+                        <p>Your journey continues as you inspire others and set new challenges.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Earning System Section -->
+        <section class="earning-system">
+            <div class="container">
+                <h2 class="section-title">Earning System</h2>
+                <div class="earning-steps">
+                    <div class="earning-step">
+                        <div class="step-icon">
+                            <i class="fas fa-camera"></i>
+                        </div>
+                        <h3>1. Pre-Task Setup</h3>
+                        <p>Upload 2 images showing your task setup:</p>
+                        <ul>
+                            <li>A selfie with your study/workout setup</li>
+                            <li>A photo of your task materials or environment</li>
+                        </ul>
+                    </div>
+                    <div class="earning-step">
+                        <div class="step-icon">
+                            <i class="fas fa-tasks"></i>
+                        </div>
+                        <h3>2. Complete Your Habit</h3>
+                        <p>Perform your daily habit task as planned.</p>
+                        <p>Stay focused and committed to the process.</p>
+                    </div>
+                    <div class="earning-step">
+                        <div class="step-icon">
+                            <i class="fas fa-check-circle"></i>
+                        </div>
+                        <h3>3. Post-Task Evidence</h3>
+                        <p>Upload images showing completed task results:</p>
+                        <ul>
+                            <li>A photo showing your completed work</li>
+                            <li>Evidence that you've finished the habit</li>
+                        </ul>
+                    </div>
+                    <div class="earning-step">
+                        <div class="step-icon">
+                            <i class="fas fa-robot"></i>
+                        </div>
+                        <h3>4. AI Verification</h3>
+                        <p>Our AI system verifies your uploads:</p>
+                        <ul>
+                            <li>Checks image timestamps</li>
+                            <li>Verifies pre and post task consistency</li>
+                            <li>Ensures uploaded proof is authentic</li>
+                        </ul>
+                    </div>
+                    <div class="earning-step">
+                        <div class="step-icon">
+                            <i class="fas fa-coins"></i>
+                        </div>
+                        <h3>5. Earn Rewards</h3>
+                        <p>Successfully verified habits earn you:</p>
+                        <ul>
+                            <li>5 coins per completed habit</li>
+                            <li>Bonus coins for streaks (consecutive days)</li>
+                            <li>Special bonus coins for milestone achievements</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="features">
+            <h2 class="section-title">Why Choose Us?</h2>
+            <div class="features-container">
+                <a href="goal-setting.html" class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-bullseye"></i>
+                    </div>
+                    <h3>Goal Setting</h3>
+                    <p>Set clear, achievable goals with our guided system.</p>
+                </a>
+                <a href="ai-assistant.html" class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-robot"></i>
+                    </div>
+                    <h3>AI Guidance</h3>
+                    <p>Get personalized recommendations from our AI assistant.</p>
+                </a>
+                <a href="progress-tracking.html" class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h3>Progress Tracking</h3>
+                    <p>Visualize your journey with beautiful progress charts.</p>
+                </a>
+                <a href="redeem-coins.html" class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-coins"></i>
+                    </div>
+                    <h3>Reward System</h3>
+                    <p>Earn coins and redeem for motivational rewards.</p>
+                </a>
+            </div>
+        </section>
+
+        <section class="cta">
+            <div class="cta-content">
+                <h2>Ready to Build Better Habits?</h2>
+                <p>Join thousands of others who are transforming their lives one habit at a time.</p>
+                <a href="#" class="btn btn-primary" id="scroll-to-top">Get Started Now</a>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-logo">
+                <h3>We Are Habit Builders</h3>
+                <p>Transform your life one habit at a time</p>
+            </div>
+            <div class="footer-links">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="services.html">Services</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-links">
+                <h4>Resources</h4>
+                <ul>
+                    <li><a href="rewards.html">Rewards</a></li>
+                    <li><a href="goal-setting.html">Goal Setting</a></li>
+                    <li><a href="#">Blog</a></li>
+                    <li><a href="#">FAQs</a></li>
+                </ul>
+            </div>
+            <div class="footer-newsletter">
+                <h4>Stay Updated</h4>
+                <form>
+                    <input type="email" placeholder="Enter your email">
+                    <button type="submit" class="btn btn-secondary">Subscribe</button>
+                </form>
+                <div class="social-icons">
+                    <a href="https://facebook.com/habitbuilders" target="_blank" rel="noopener noreferrer"><i class="fab fa-facebook"></i></a>
+                    <a href="https://twitter.com/habitbuilders" target="_blank" rel="noopener noreferrer"><i class="fab fa-twitter"></i></a>
+                    <a href="https://instagram.com/habitbuilders" target="_blank" rel="noopener noreferrer"><i class="fab fa-instagram"></i></a>
+                    <a href="https://youtube.com/habitbuilders" target="_blank" rel="noopener noreferrer"><i class="fab fa-youtube"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2023 We Are Habit Builders. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/mentor-popup.js"></script>
+    <script>
+        // Optimize scrolling performance
+        document.addEventListener('DOMContentLoaded', function() {
+            // Use requestAnimationFrame for smooth animations
+            let ticking = false;
+            const timelineItems = document.querySelectorAll('.timeline-item');
+            const featureCards = document.querySelectorAll('.feature-card');
+            
+            // Optimize scroll event with throttling
+            window.addEventListener('scroll', function() {
+                if (!ticking) {
+                    window.requestAnimationFrame(function() {
+                        updateTimelineItems();
+                        updateFeatureCards();
+                        ticking = false;
+                    });
+                    ticking = true;
+                }
+            });
+            
+            function updateTimelineItems() {
+                const windowHeight = window.innerHeight;
+                const scrollTop = window.scrollY;
+                
+                timelineItems.forEach(function(item) {
+                    const itemTop = item.getBoundingClientRect().top + scrollTop;
+                    const itemBottom = itemTop + item.offsetHeight;
+                    
+                    // Check if item is in viewport
+                    if (itemBottom > scrollTop && itemTop < scrollTop + windowHeight) {
+                        item.style.opacity = '1';
+                        item.style.transform = 'translateY(0)';
+                    } else {
+                        // Fade out items that are far from viewport
+                        const distance = Math.abs(itemTop - scrollTop);
+                        if (distance > windowHeight * 2) {
+                            item.style.opacity = '0.3';
+                            item.style.transform = 'translateY(20px)';
+                        }
+                    }
+                });
+            }
+            
+            function updateFeatureCards() {
+                const windowHeight = window.innerHeight;
+                const scrollTop = window.scrollY;
+                
+                featureCards.forEach(function(card) {
+                    const cardTop = card.getBoundingClientRect().top + scrollTop;
+                    const cardBottom = cardTop + card.offsetHeight;
+                    
+                    // Check if card is in viewport
+                    if (cardBottom > scrollTop && cardTop < scrollTop + windowHeight) {
+                        card.style.opacity = '1';
+                        card.style.transform = 'translateY(0)';
+                    } else {
+                        // Fade out cards that are far from viewport
+                        const distance = Math.abs(cardTop - scrollTop);
+                        if (distance > windowHeight * 2) {
+                            card.style.opacity = '0.3';
+                            card.style.transform = 'translateY(20px)';
+                        }
+                    }
+                });
+            }
+            
+            // Initial call to set initial states
+            updateTimelineItems();
+            updateFeatureCards();
+            
+            // Preload images for smoother experience
+            const images = document.querySelectorAll('.timeline-img img');
+            images.forEach(function(img) {
+                const src = img.getAttribute('src');
+                if (src) {
+                    const image = new Image();
+                    image.src = src;
+                }
+            });
+            
+            // Add hover effect optimization for feature cards
+            featureCards.forEach(function(card) {
+                card.addEventListener('mouseenter', function() {
+                    this.style.transform = 'translateY(-10px)';
+                    this.style.boxShadow = '0 10px 20px rgba(0,0,0,0.1)';
+                });
+                
+                card.addEventListener('mouseleave', function() {
+                    this.style.transform = 'translateY(0)';
+                    this.style.boxShadow = '0 4px 6px rgba(0,0,0,0.1)';
+                });
+            });
+        });
+    </script>
+</body>
+</html> 

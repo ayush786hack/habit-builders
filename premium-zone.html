@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Premium Zone - We Are Habit Builders</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/dashboard.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="js/main.js" defer></script>
+    <script src="js/navigation.js" defer></script>
+    <style>
+        body {
+            transition: opacity 0.3s ease;
+        }
+
+        .premium-container {
+            padding: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .premium-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .premium-header h1 {
+            font-size: 2.5rem;
+            color: #6a11cb;
+            margin-bottom: 1rem;
+        }
+
+        .premium-header p {
+            font-size: 1.2rem;
+            color: #666;
+        }
+
+        .premium-benefits {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .benefit-card {
+            background: white;
+            border-radius: 15px;
+            padding: 2rem;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+
+        .benefit-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .benefit-icon {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.5rem;
+        }
+
+        .benefit-icon i {
+            font-size: 2rem;
+            color: white;
+        }
+
+        .benefit-card h3 {
+            color: #333;
+            margin-bottom: 1rem;
+        }
+
+        .benefit-card p {
+            color: #666;
+            line-height: 1.6;
+        }
+
+        .subscription-plans {
+            background: white;
+            border-radius: 15px;
+            padding: 3rem;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .plans-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .plans-header h2 {
+            color: #333;
+            margin-bottom: 1rem;
+        }
+
+        .plans-header p {
+            color: #666;
+        }
+
+        .plans-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .plan-card {
+            background: #f8f9fa;
+            border-radius: 15px;
+            padding: 2rem;
+            text-align: center;
+            position: relative;
+        }
+
+        .plan-card.popular {
+            background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
+            color: white;
+            transform: scale(1.05);
+        }
+
+        .popular-badge {
+            position: absolute;
+            top: -15px;
+            right: 20px;
+            background: #ffd700;
+            color: #000;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-weight: bold;
+            font-size: 0.9rem;
+        }
+
+        .plan-name {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .plan-price {
+            font-size: 2.5rem;
+            font-weight: bold;
+            margin-bottom: 1.5rem;
+        }
+
+        .plan-features {
+            list-style: none;
+            padding: 0;
+            margin-bottom: 2rem;
+        }
+
+        .plan-features li {
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .plan-features i {
+            color: #4CAF50;
+        }
+
+        .plan-card.popular .plan-features i {
+            color: #ffd700;
+        }
+
+        .btn-subscribe {
+            width: 100%;
+            padding: 1rem;
+            border: none;
+            border-radius: 5px;
+            background: #4CAF50;
+            color: white;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .btn-subscribe:hover {
+            background: #45a049;
+            transform: translateY(-2px);
+        }
+
+        .plan-card.popular .btn-subscribe {
+            background: #ffd700;
+            color: #000;
+        }
+
+        .plan-card.popular .btn-subscribe:hover {
+            background: #ffc107;
+        }
+
+        .faq-section {
+            margin-top: 4rem;
+        }
+
+        .faq-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .faq-header h2 {
+            color: #333;
+            margin-bottom: 1rem;
+        }
+
+        .faq-grid {
+            display: grid;
+            gap: 1.5rem;
+        }
+
+        .faq-item {
+            background: white;
+            border-radius: 10px;
+            padding: 1.5rem;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .faq-question {
+            font-weight: bold;
+            margin-bottom: 1rem;
+            color: #333;
+        }
+
+        .faq-answer {
+            color: #666;
+            line-height: 1.6;
+        }
+    </style>
+</head>
+<body class="light-theme">
+    <!-- Sidebar -->
+    <aside class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <div class="logo">
+                <a href="index.html" class="logo-link">
+                    <span class="logo-text">We Are Habit Builders</span>
+                </a>
+            </div>
+            <button class="toggle-sidebar" id="toggleSidebar">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+        
+        <div class="profile-section">
+            <a href="#profile" class="profile-link">
+                <div class="profile-picture">
+                    <img src="images/User.png" alt="User Profile" id="sidebarProfilePic">
+                </div>
+                <div class="profile-info">
+                    <h3 id="sidebarUserName">Ankit</h3>
+                    <div class="coin-balance">
+                        <i class="fas fa-coins"></i>
+                        <span id="sidebarCoinCount">120</span> coins
+                    </div>
+                </div>
+            </a>
+        </div>
+        
+        <nav class="sidebar-nav">
+            <ul>
+                <li>
+                    <a href="dashboard.html">
+                        <i class="fas fa-home"></i>
+                        <span>Dashboard</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="my-tasks.html">
+                        <i class="fas fa-tasks"></i>
+                        <span>My Task</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="wallet.html">
+                        <i class="fas fa-wallet"></i>
+                        <span>Coin Wallet</span>
+                    </a>
+                </li>
+                <li class="active">
+                    <a href="premium-zone.html">
+                        <i class="fas fa-crown"></i>
+                        <span>Premium Zone</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#ai-profile">
+                        <i class="fas fa-robot"></i>
+                        <span>Your AI Profile</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#help">
+                        <i class="fas fa-question-circle"></i>
+                        <span>Help & Support</span>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+    </aside>
+
+    <!-- Main Content -->
+    <div class="main-content">
+        <header class="top-navbar">
+            <div class="navbar-left">
+                <h1>Premium Zone</h1>
+            </div>
+            <div class="navbar-right">
+                <div class="notification-bell">
+                    <i class="fas fa-bell"></i>
+                    <span class="notification-badge">3</span>
+                </div>
+                <div class="profile-picture">
+                    <img src="images/User.png" alt="User Profile" id="navbarProfilePic">
+                </div>
+            </div>
+        </header>
+
+        <main class="premium-container">
+            <div class="premium-header">
+                <h1>Unlock Premium Features</h1>
+                <p>Upgrade your experience with exclusive benefits and rewards</p>
+            </div>
+
+            <div class="premium-benefits">
+                <div class="benefit-card">
+                    <div class="benefit-icon">
+                        <i class="fas fa-bolt"></i>
+                    </div>
+                    <h3>2x Coin Multiplier</h3>
+                    <p>Earn twice as many coins for completing your tasks and building habits</p>
+                </div>
+
+                <div class="benefit-card">
+                    <div class="benefit-icon">
+                        <i class="fas fa-gem"></i>
+                    </div>
+                    <h3>Exclusive Rewards</h3>
+                    <p>Access premium trophies and certificates for your achievements</p>
+                </div>
+
+                <div class="benefit-card">
+                    <div class="benefit-icon">
+                        <i class="fas fa-headset"></i>
+                    </div>
+                    <h3>Personalized Support</h3>
+                    <p>Get one-on-one calls with our habit-building mentors</p>
+                </div>
+            </div>
+
+            <div class="subscription-plans">
+                <div class="plans-header">
+                    <h2>Choose Your Plan</h2>
+                    <p>Select the subscription that best fits your needs</p>
+                </div>
+
+                <div class="plans-grid">
+                    <div class="plan-card">
+                        <div class="plan-name">Monthly</div>
+                        <div class="plan-price">₹299<span>/month</span></div>
+                        <ul class="plan-features">
+                            <li><i class="fas fa-check"></i> 2x Coin Multiplier</li>
+                            <li><i class="fas fa-check"></i> Early Access to New Rewards</li>
+                            <li><i class="fas fa-check"></i> Exclusive Diamond Trophy</li>
+                            <li><i class="fas fa-check"></i> Monthly Mentor Calls</li>
+                            <li><i class="fas fa-check"></i> Priority Support</li>
+                        </ul>
+                        <button class="btn-subscribe">Subscribe Monthly</button>
+                    </div>
+
+                    <div class="plan-card popular">
+                        <div class="popular-badge">Most Popular</div>
+                        <div class="plan-name">Yearly</div>
+                        <div class="plan-price">₹2,499<span>/year</span></div>
+                        <div class="plan-savings">Save ₹1,089</div>
+                        <ul class="plan-features">
+                            <li><i class="fas fa-check"></i> 2x Coin Multiplier</li>
+                            <li><i class="fas fa-check"></i> Early Access to New Rewards</li>
+                            <li><i class="fas fa-check"></i> Exclusive Diamond Trophy</li>
+                            <li><i class="fas fa-check"></i> Monthly Mentor Calls</li>
+                            <li><i class="fas fa-check"></i> Priority Support</li>
+                            <li><i class="fas fa-check"></i> Annual Bonus: 500 Coins</li>
+                        </ul>
+                        <button class="btn-subscribe">Subscribe Yearly</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="faq-section">
+                <div class="faq-header">
+                    <h2>Frequently Asked Questions</h2>
+                </div>
+
+                <div class="faq-grid">
+                    <div class="faq-item">
+                        <div class="faq-question">What happens if I cancel my subscription?</div>
+                        <div class="faq-answer">You'll continue to have access to premium features until the end of your current billing period. After that, you'll return to the free plan with basic features.</div>
+                    </div>
+
+                    <div class="faq-item">
+                        <div class="faq-question">Can I switch between monthly and yearly plans?</div>
+                        <div class="faq-answer">Yes, you can switch between plans at any time. The change will take effect at the start of your next billing cycle.</div>
+                    </div>
+
+                    <div class="faq-item">
+                        <div class="faq-question">How do I contact support?</div>
+                        <div class="faq-answer">Premium members have access to priority support through email and live chat. You can also schedule calls with our mentors for personalized guidance.</div>
+                    </div>
+
+                    <div class="faq-item">
+                        <div class="faq-question">What payment methods do you accept?</div>
+                        <div class="faq-answer">We accept all major credit cards, debit cards, and UPI payments. All transactions are secure and encrypted.</div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Handle subscription buttons
+            const subscribeButtons = document.querySelectorAll('.btn-subscribe');
+            subscribeButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const plan = this.closest('.plan-card').querySelector('.plan-name').textContent;
+                    alert(`Thank you for choosing the ${plan} plan! You will be redirected to the payment page.`);
+                    // Here you would typically redirect to a payment gateway
+                });
+            });
+        });
+    </script>
+</body>
+</html> 

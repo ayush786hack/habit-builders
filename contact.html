@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us - We Are Habit Builders</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="logo">
+                <span class="logo-text">We Are Habit Builders</span>
+            </div>
+            <div class="menu-toggle">
+                <i class="fas fa-bars"></i>
+            </div>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="services.html">Services</a></li>
+                <li><a href="goal-setting.html">Goal Setting</a></li>
+                <li><a href="rewards.html">Rewards</a></li>
+                <li><a href="redeem-coins.html">Redeem Coins</a></li>
+                <li><a href="contact.html" class="active">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section class="page-header">
+            <div class="page-header-content">
+                <h1>Contact Us</h1>
+                <p>Get in touch with our team. We're here to help with any questions you may have.</p>
+            </div>
+        </section>
+
+        <section class="contact-info">
+            <div class="container">
+                <div class="info-cards">
+                    <div class="info-card">
+                        <div class="info-icon">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <h3>Email Us</h3>
+                        <p>Our support team will get back to you within 24 hours.</p>
+                        <a href="mailto:support@habitbuilders.com">support@habitbuilders.com</a>
+                    </div>
+                    <div class="info-card">
+                        <div class="info-icon">
+                            <i class="fas fa-phone-alt"></i>
+                        </div>
+                        <h3>Call Us</h3>
+                        <p>Mon-Fri from 9am to 5pm.</p>
+                        <a href="tel:+11234567890">+1 (123) 456-7890</a>
+                    </div>
+                    <div class="info-card">
+                        <div class="info-icon">
+                            <i class="fas fa-map-marker-alt"></i>
+                        </div>
+                        <h3>Visit Us</h3>
+                        <p>Come say hello at our headquarters.</p>
+                        <address>123 Habit St, San Francisco, CA 94103</address>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="contact-form-section">
+            <div class="container">
+                <div class="contact-container">
+                    <div class="contact-form-wrapper">
+                        <h2 class="section-title">Send Us a Message</h2>
+                        <form id="contactForm" class="contact-form">
+                            <div class="form-group">
+                                <label for="name">Full Name</label>
+                                <input type="text" id="name" name="name" required>
+                                <div class="error-message" id="nameError"></div>
+                            </div>
+                            <div class="form-group">
+                                <label for="email">Email Address</label>
+                                <input type="email" id="email" name="email" required>
+                                <div class="error-message" id="emailError"></div>
+                            </div>
+                            <div class="form-group">
+                                <label for="subject">Subject</label>
+                                <input type="text" id="subject" name="subject" required>
+                                <div class="error-message" id="subjectError"></div>
+                            </div>
+                            <div class="form-group">
+                                <label for="message">Message</label>
+                                <textarea id="message" name="message" rows="6" required></textarea>
+                                <div class="error-message" id="messageError"></div>
+                            </div>
+                            <button type="submit" class="btn btn-primary">Send Message</button>
+                        </form>
+                        <div id="formSuccess" class="form-success">
+                            <i class="fas fa-check-circle"></i>
+                            <h3>Thank You!</h3>
+                            <p>Your message has been sent successfully. We'll get back to you soon.</p>
+                        </div>
+                    </div>
+                    <div class="contact-image">
+                        <img src="images/contact us.png" alt="Contact us" loading="lazy" width="600" height="400" style="max-width: 100%; border-radius: 10px; box-shadow: 0 4px 8px rgba(0,0,0,0.1);">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="faq-section">
+            <div class="container">
+                <h2 class="section-title">Frequently Asked Questions</h2>
+                <div class="accordion">
+                    <div class="accordion-item">
+                        <div class="accordion-header">
+                            <h3>How do I reset my password?</h3>
+                            <i class="fas fa-plus"></i>
+                        </div>
+                        <div class="accordion-content">
+                            <p>To reset your password, click on the "Forgot Password" link on the login page. You'll receive an email with instructions to reset your password.</p>
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <div class="accordion-header">
+                            <h3>What's the difference between Free and Premium plans?</h3>
+                            <i class="fas fa-plus"></i>
+                        </div>
+                        <div class="accordion-content">
+                            <p>The Free plan includes basic habit tracking, limited video content, and community access. The Premium plan adds AI assistant, unlimited coin earning, premium rewards, and advanced tracking features. Visit our <a href="premium.html">Free vs Premium</a> page for more details.</p>
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <div class="accordion-header">
+                            <h3>How does the reward system work?</h3>
+                            <i class="fas fa-plus"></i>
+                        </div>
+                        <div class="accordion-content">
+                            <p>You earn coins by completing your daily habits and submitting proof. These coins can be redeemed for rewards in our reward store. The more consistent you are, the more coins you'll earn!</p>
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <div class="accordion-header">
+                            <h3>Can I cancel my subscription anytime?</h3>
+                            <i class="fas fa-plus"></i>
+                        </div>
+                        <div class="accordion-content">
+                            <p>Yes, you can cancel your Premium subscription at any time. Your benefits will continue until the end of your billing cycle.</p>
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <div class="accordion-header">
+                            <h3>Is my data secure?</h3>
+                            <i class="fas fa-plus"></i>
+                        </div>
+                        <div class="accordion-content">
+                            <p>Yes, we take data security very seriously. All your personal information and habit data are encrypted and stored securely. We never share your data with third parties without your consent.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="cta">
+            <div class="cta-content">
+                <h2>Ready to Build Better Habits?</h2>
+                <p>Join thousands of others who are transforming their lives one habit at a time.</p>
+                <a href="index.html?from=services" class="btn btn-primary">Get Started Now</a>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-logo">
+                <h3>We Are Habit Builders</h3>
+                <p>Transform your life one habit at a time</p>
+            </div>
+            <div class="footer-links">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="services.html">Services</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-links">
+                <h4>Resources</h4>
+                <ul>
+                    <li><a href="rewards.html">Rewards</a></li>
+                    <li><a href="#">Blog</a></li>
+                    <li><a href="#">FAQs</a></li>
+                </ul>
+            </div>
+            <div class="footer-newsletter">
+                <h4>Stay Updated</h4>
+                <form>
+                    <input type="email" placeholder="Enter your email">
+                    <button type="submit" class="btn btn-secondary">Subscribe</button>
+                </form>
+                <div class="social-icons">
+                    <a href="#"><i class="fab fa-facebook"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-youtube"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2023 We Are Habit Builders. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+    <script src="js/contact.js"></script>
+</body>
+</html> 

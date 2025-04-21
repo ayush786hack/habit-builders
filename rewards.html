@@ -1,0 +1,835 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rewards - We Are Habit Builders</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .roadmap-section {
+            margin-top: 3rem;
+            padding: 40px 0;
+        }
+        
+        .roadmap-container {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+            margin-top: 30px;
+        }
+        
+        .roadmap-item {
+            display: flex;
+            align-items: center;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            padding: 25px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .roadmap-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+        }
+        
+        .roadmap-icon {
+            width: 80px;
+            height: 80px;
+            margin-right: 25px;
+            flex-shrink: 0;
+        }
+        
+        .roadmap-icon img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+        
+        .roadmap-content {
+            flex: 1;
+        }
+        
+        .roadmap-content h3 {
+            color: #007bff;
+            margin-bottom: 5px;
+            font-size: 1.2rem;
+        }
+        
+        .roadmap-content h4 {
+            color: #333;
+            margin-bottom: 10px;
+            font-size: 1.4rem;
+        }
+        
+        .roadmap-content p {
+            color: #666;
+            margin-bottom: 15px;
+            line-height: 1.5;
+        }
+        
+        .roadmap-details {
+            display: flex;
+            gap: 20px;
+        }
+        
+        .coin-count, .time-period {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: #555;
+            font-size: 0.9rem;
+        }
+        
+        .coin-count i, .time-period i {
+            color: #007bff;
+        }
+        
+        @media (max-width: 768px) {
+            .roadmap-item {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .roadmap-icon {
+                margin-right: 0;
+                margin-bottom: 15px;
+            }
+            
+            .roadmap-details {
+                justify-content: center;
+            }
+        }
+
+        /* Coin Reward System Styles */
+        .coin-reward-details {
+            padding: 40px 0;
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+        }
+
+        .reward-system-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 30px;
+        }
+
+        .reward-system-card {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .reward-system-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+        }
+
+        .reward-system-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(90deg, #4f46e5, #7c3aed);
+        }
+
+        .card-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        .card-icon i {
+            font-size: 24px;
+            color: white;
+        }
+
+        .reward-system-card h3 {
+            color: #333;
+            margin-bottom: 15px;
+            font-size: 1.5rem;
+        }
+
+        .reward-system-card p {
+            color: #666;
+            margin-bottom: 15px;
+            line-height: 1.5;
+        }
+
+        .reward-system-card ul {
+            list-style-type: none;
+            padding: 0;
+            margin-bottom: 20px;
+        }
+
+        .reward-system-card ul li {
+            color: #555;
+            margin-bottom: 10px;
+            padding-left: 25px;
+            position: relative;
+        }
+
+        .reward-system-card ul li::before {
+            content: "•";
+            color: #4f46e5;
+            position: absolute;
+            left: 0;
+            font-weight: bold;
+        }
+
+        .reward-highlight {
+            background: rgba(79, 70, 229, 0.1);
+            padding: 15px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-top: 15px;
+        }
+
+        .reward-highlight i {
+            color: #4f46e5;
+            font-size: 18px;
+        }
+
+        .reward-highlight span {
+            color: #333;
+            font-weight: 500;
+        }
+
+        .task-verification {
+            background: rgba(79, 70, 229, 0.05);
+            padding: 15px;
+            border-radius: 10px;
+            margin: 15px 0;
+        }
+
+        .task-verification h4 {
+            color: #4f46e5;
+            margin-bottom: 10px;
+            font-size: 1.1rem;
+        }
+
+        .task-verification ol {
+            padding-left: 20px;
+            margin-bottom: 0;
+        }
+
+        .task-verification ol li {
+            color: #555;
+            margin-bottom: 8px;
+            line-height: 1.4;
+        }
+
+        .reward-system-summary {
+            margin-top: 40px;
+        }
+
+        .summary-card {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+
+        .summary-card h3 {
+            color: #333;
+            margin-bottom: 20px;
+            font-size: 1.8rem;
+            text-align: center;
+        }
+
+        .summary-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        .summary-item {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            padding: 15px;
+            background: rgba(79, 70, 229, 0.05);
+            border-radius: 10px;
+            transition: transform 0.3s ease;
+        }
+
+        .summary-item:hover {
+            transform: translateY(-3px);
+            background: rgba(79, 70, 229, 0.1);
+        }
+
+        .summary-icon {
+            width: 50px;
+            height: 50px;
+            background: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .summary-icon i {
+            font-size: 20px;
+            color: #4f46e5;
+        }
+
+        .summary-text h4 {
+            color: #333;
+            margin-bottom: 5px;
+            font-size: 1.1rem;
+        }
+
+        .summary-text p {
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+        @media (max-width: 768px) {
+            .reward-system-cards {
+                grid-template-columns: 1fr;
+            }
+            
+            .summary-content {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .reward-image {
+            width: 100%;
+            height: 200px;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #f8f9fa;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+        
+        .reward-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            padding: 10px;
+            transition: transform 0.3s ease;
+        }
+        
+        .reward-card:hover .reward-image img {
+            transform: scale(1.05);
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="logo">
+                <span class="logo-text">We Are Habit Builders</span>
+            </div>
+            <div class="menu-toggle">
+                <i class="fas fa-bars"></i>
+            </div>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="services.html">Services</a></li>
+                <li><a href="goal-setting.html">Goal Setting</a></li>
+                <li><a href="rewards.html" class="active">Rewards</a></li>
+                <li><a href="redeem-coins.html">Redeem Coins</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section class="page-header">
+            <div class="page-header-content">
+                <h1>Reward System</h1>
+                <p>Earn coins for building habits and redeem them for motivational rewards.</p>
+            </div>
+        </section>
+
+        <section class="rewards-intro">
+            <div class="container">
+                <h2 class="section-title">How It Works</h2>
+                <p class="rewards-intro-text">
+                    Our unique reward system is designed to help you stay motivated on your habit-building journey. Earn coins by completing your daily habits and use them to redeem rewards that reinforce your positive behaviors.
+                </p>
+            </div>
+        </section>
+
+        <section class="rewards-balance">
+            <div class="container">
+                <div class="balance-card">
+                    <div class="balance-header">
+                        <h3>Your Balance</h3>
+                        <div class="balance-amount">
+                            <i class="fas fa-coins"></i>
+                            <span id="coinBalance">0</span>
+                        </div>
+                    </div>
+                    <div class="balance-body">
+                        <p class="login-prompt">Login to view your actual coin balance and access rewards.</p>
+                        <a href="index.html?from=services" class="btn btn-primary">Login Now</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Coin Reward System Details Section -->
+        <section class="coin-reward-details">
+            <div class="container">
+                <h2 class="section-title">Coin Reward System</h2>
+                <div class="reward-system-cards">
+                    <div class="reward-system-card">
+                        <div class="card-icon">
+                            <i class="fas fa-tasks"></i>
+                        </div>
+                        <h3>Daily Tasks</h3>
+                        <p>Complete any of the 5 available tasks each day:</p>
+                        <ul>
+                            <li>Study for 30 minutes</li>
+                            <li>Exercise for 20 minutes</li>
+                            <li>Read 10 pages</li>
+                            <li>Meditate for 10 minutes</li>
+                            <li>Practice a skill for 15 minutes</li>
+                        </ul>
+                        <div class="task-verification">
+                            <h4>Task Verification Process:</h4>
+                            <ol>
+                                <li>Upload a photo when you start the task</li>
+                                <li>Complete the task as specified</li>
+                                <li>Upload a photo showing task completion</li>
+                                <li>Our AI system verifies your submission</li>
+                                <li>Upon verification, you receive your coins</li>
+                            </ol>
+                        </div>
+                        <div class="reward-highlight">
+                            <i class="fas fa-coins"></i>
+                            <span>5 coins per completed task</span>
+                        </div>
+                    </div>
+                    
+                    <div class="reward-system-card">
+                        <div class="card-icon">
+                            <i class="fas fa-fire"></i>
+                        </div>
+                        <h3>Streak System</h3>
+                        <p>Maintain your daily task completion streak to earn bonus rewards:</p>
+                        <ul>
+                            <li>Complete all 5 tasks daily to maintain your streak</li>
+                            <li>Streaks increase your daily coin earnings</li>
+                            <li>Longer streaks unlock special rewards and achievements</li>
+                        </ul>
+                        <div class="reward-highlight">
+                            <i class="fas fa-exclamation-triangle"></i>
+                            <span>Breaking a streak results in a 25 coin penalty</span>
+                        </div>
+                    </div>
+                    
+                    <div class="reward-system-card">
+                        <div class="card-icon">
+                            <i class="fas fa-calendar-check"></i>
+                        </div>
+                        <h3>Consistency Rewards</h3>
+                        <p>Regular task completion leads to greater rewards:</p>
+                        <ul>
+                            <li>Complete all 5 tasks daily for maximum earnings (25 coins)</li>
+                            <li>Weekly consistency bonuses for maintaining streaks</li>
+                            <li>Monthly achievement rewards for dedicated users</li>
+                        </ul>
+                        <div class="reward-highlight">
+                            <i class="fas fa-star"></i>
+                            <span>Consistency is key to maximizing your coin earnings</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="reward-system-summary">
+                    <div class="summary-card">
+                        <h3>Coin Earning Summary</h3>
+                        <div class="summary-content">
+                            <div class="summary-item">
+                                <div class="summary-icon">
+                                    <i class="fas fa-check-circle"></i>
+                                </div>
+                                <div class="summary-text">
+                                    <h4>Task Completion</h4>
+                                    <p>5 coins per completed task</p>
+                                </div>
+                            </div>
+                            <div class="summary-item">
+                                <div class="summary-icon">
+                                    <i class="fas fa-fire"></i>
+                                </div>
+                                <div class="summary-text">
+                                    <h4>Streak Maintenance</h4>
+                                    <p>Keep your streak alive to avoid penalties</p>
+                                </div>
+                            </div>
+                            <div class="summary-item">
+                                <div class="summary-icon">
+                                    <i class="fas fa-ban"></i>
+                                </div>
+                                <div class="summary-text">
+                                    <h4>Streak Breaking</h4>
+                                    <p>25 coin penalty for breaking a streak</p>
+                                </div>
+                            </div>
+                            <div class="summary-item">
+                                <div class="summary-icon">
+                                    <i class="fas fa-trophy"></i>
+                                </div>
+                                <div class="summary-text">
+                                    <h4>Daily Maximum</h4>
+                                    <p>Up to 25 coins for completing all 5 tasks</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Reward Journey Section -->
+        <section class="roadmap-section">
+            <div class="container">
+                <h2 class="section-title">Your Rewards</h2>
+                <div class="roadmap-container">
+                    <div class="roadmap-item">
+                        <div class="roadmap-icon">
+                            <img src="images/certificate.png" alt="Certificate of Consistency">
+                        </div>
+                        <div class="roadmap-content">
+                            <h3>1 Month</h3>
+                            <h4>Certificate of Consistency</h4>
+                            <p>Awarded after 750 coins (30 days × 25 coins/day). Personalized with your name!</p>
+                            <div class="roadmap-details">
+                                <div class="coin-count">
+                                    <i class="fas fa-coins"></i>
+                                    <span>750 Coins</span>
+                                </div>
+                                <div class="time-period">
+                                    <i class="fas fa-calendar"></i>
+                                    <span>30 Days</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="roadmap-item">
+                        <div class="roadmap-icon">
+                            <img src="images/silver.png" alt="Silver Trophy">
+                        </div>
+                        <div class="roadmap-content">
+                            <h3>3 Months</h3>
+                            <h4>Silver Trophy</h4>
+                            <p>Awarded for 2,250 coins (90 days). Features We Are Habit Builders branding.</p>
+                            <div class="roadmap-details">
+                                <div class="coin-count">
+                                    <i class="fas fa-coins"></i>
+                                    <span>2,250 Coins</span>
+                                </div>
+                                <div class="time-period">
+                                    <i class="fas fa-calendar"></i>
+                                    <span>90 Days</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="roadmap-item">
+                        <div class="roadmap-icon">
+                            <img src="images/gold.png" alt="Gold Trophy">
+                        </div>
+                        <div class="roadmap-content">
+                            <h3>6 Months</h3>
+                            <h4>Gold Trophy</h4>
+                            <p>Awarded for 4,500 coins (180 days). Represents major habit achievement.</p>
+                            <div class="roadmap-details">
+                                <div class="coin-count">
+                                    <i class="fas fa-coins"></i>
+                                    <span>4,500 Coins</span>
+                                </div>
+                                <div class="time-period">
+                                    <i class="fas fa-calendar"></i>
+                                    <span>180 Days</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="roadmap-item">
+                        <div class="roadmap-icon">
+                            <img src="images/diamond.png" alt="Diamond Trophy">
+                        </div>
+                        <div class="roadmap-content">
+                            <h3>12 Months</h3>
+                            <h4>Diamond Trophy</h4>
+                            <p>Awarded for 9,125 coins (365 days). Highest honor with premium visuals.</p>
+                            <div class="roadmap-details">
+                                <div class="coin-count">
+                                    <i class="fas fa-coins"></i>
+                                    <span>9,125 Coins</span>
+                                </div>
+                                <div class="time-period">
+                                    <i class="fas fa-calendar"></i>
+                                    <span>365 Days</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Earning System Section -->
+        <section class="earning-system">
+            <div class="container">
+                <h2 class="section-title">Earning System</h2>
+                <div class="earning-steps">
+                    <div class="earning-step">
+                        <div class="step-icon">
+                            <i class="fas fa-camera"></i>
+                        </div>
+                        <h3>1. Pre-Task Setup</h3>
+                        <p>Upload 2 images showing your task setup:</p>
+                        <ul>
+                            <li>A selfie with your study/workout setup</li>
+                            <li>A photo of your task materials or environment</li>
+                        </ul>
+                    </div>
+                    <div class="earning-step">
+                        <div class="step-icon">
+                            <i class="fas fa-tasks"></i>
+                        </div>
+                        <h3>2. Complete Your Habit</h3>
+                        <p>Perform your daily habit task as planned.</p>
+                        <p>Stay focused and committed to the process.</p>
+                    </div>
+                    <div class="earning-step">
+                        <div class="step-icon">
+                            <i class="fas fa-check-circle"></i>
+                        </div>
+                        <h3>3. Post-Task Evidence</h3>
+                        <p>Upload 1 image showing completed task results:</p>
+                        <ul>
+                            <li>A photo showing your completed work</li>
+                            <li>Evidence that you've finished the habit</li>
+                        </ul>
+                    </div>
+                    <div class="earning-step">
+                        <div class="step-icon">
+                            <i class="fas fa-robot"></i>
+                        </div>
+                        <h3>4. AI Verification</h3>
+                        <p>Our AI system verifies your uploads:</p>
+                        <ul>
+                            <li>Checks image timestamps</li>
+                            <li>Verifies pre and post task consistency</li>
+                            <li>Ensures uploaded proof is authentic</li>
+                        </ul>
+                    </div>
+                    <div class="earning-step">
+                        <div class="step-icon">
+                            <i class="fas fa-coins"></i>
+                        </div>
+                        <h3>5. Earn Rewards</h3>
+                        <p>Successfully verified habits earn you:</p>
+                        <ul>
+                            <li>5 coins per completed habit</li>
+                            <li>Bonus coins for streaks (consecutive days)</li>
+                            <li>Special bonus coins for milestone achievements</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="motivational-poster">
+            <div class="container">
+                <h2 class="section-title">Automatic Motivation</h2>
+                <div class="poster-container">
+                    <div class="poster-explanation">
+                        <h3>Motivation Through Achievement</h3>
+                        <p>Motivation comes automatically when you complete your task. Each time you successfully complete a habit, you'll feel a natural boost of motivation and accomplishment.</p>
+                        <p>This built-in reward system helps you stay motivated and consistent with your habits, creating a positive feedback loop of achievement and motivation.</p>
+                    </div>
+                    <div class="poster-preview">
+                        <div class="poster" id="posterDisplay">
+                            <div class="poster-image">
+                                <img src="images/motivational postor.png" alt="Motivational poster" id="posterImage" style="max-width: 100%; border-radius: 10px; box-shadow: 0 4px 8px rgba(0,0,0,0.1);">
+                                <div class="poster-overlay">
+                                    <div class="poster-day">Day <span id="posterDay">1</span></div>
+                                    <div class="poster-quote" id="posterQuote">"The only way to do great work is to love what you do."</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="rewards-showcase">
+            <div class="container">
+                <h2 class="section-title">Available Rewards</h2>
+                <p class="rewards-intro-text">Here are some rewards you can redeem with your earned coins. Login to see more rewards and your current balance.</p>
+                <div class="rewards-grid">
+                    <div class="reward-card">
+                        <div class="reward-image">
+                            <img src="images/certificate.png" alt="Certificate of Consistency">
+                        </div>
+                        <div class="reward-content">
+                            <h3>Certificate of Consistency</h3>
+                            <div class="time-requirement highlight">
+                                <i class="fas fa-clock"></i>
+                                <span>1 Month Achievement</span>
+                            </div>
+                            <div class="coin-cost">
+                                <i class="fas fa-coins"></i>
+                                <span>750 Coins</span>
+                            </div>
+                            <p class="reward-description">Earn this prestigious certificate after maintaining your habits for 1 month. A symbol of your dedication and commitment to personal growth.</p>
+                            <div class="progress-bar">
+                                <div class="progress" style="width: 25%"></div>
+                            </div>
+                            <button class="btn btn-primary">Redeem Now</button>
+                        </div>
+                    </div>
+                    <div class="reward-card">
+                        <div class="reward-image">
+                            <img src="images/silver.png" alt="Silver Trophy">
+                        </div>
+                        <div class="reward-content">
+                            <h3>Silver Trophy</h3>
+                            <div class="time-requirement highlight">
+                                <i class="fas fa-clock"></i>
+                                <span>3 Months Achievement</span>
+                            </div>
+                            <div class="coin-cost">
+                                <i class="fas fa-coins"></i>
+                                <span>2,250 Coins</span>
+                            </div>
+                            <p class="reward-description">Achieve the Silver Trophy after 3 months of consistent habit building. A testament to your growing discipline and perseverance.</p>
+                            <div class="progress-bar">
+                                <div class="progress" style="width: 50%"></div>
+                            </div>
+                            <button class="btn btn-primary">Redeem Now</button>
+                        </div>
+                    </div>
+                    <div class="reward-card">
+                        <div class="reward-image">
+                            <img src="images/gold.png" alt="Gold Trophy">
+                        </div>
+                        <div class="reward-content">
+                            <h3>Gold Trophy</h3>
+                            <div class="time-requirement highlight">
+                                <i class="fas fa-clock"></i>
+                                <span>6 Months Achievement</span>
+                            </div>
+                            <div class="coin-cost">
+                                <i class="fas fa-coins"></i>
+                                <span>4,500 Coins</span>
+                            </div>
+                            <p class="reward-description">Reach new heights with the Gold Trophy after 6 months of dedication. A symbol of your mastery and commitment to excellence.</p>
+                            <div class="progress-bar">
+                                <div class="progress" style="width: 75%"></div>
+                            </div>
+                            <button class="btn btn-primary">Redeem Now</button>
+                        </div>
+                    </div>
+                    <div class="reward-card">
+                        <div class="reward-image">
+                            <img src="images/diamond.png" alt="Diamond Trophy">
+                        </div>
+                        <div class="reward-content">
+                            <h3>Diamond Trophy</h3>
+                            <div class="time-requirement highlight">
+                                <i class="fas fa-clock"></i>
+                                <span>12 Months Achievement</span>
+                            </div>
+                            <div class="coin-cost">
+                                <i class="fas fa-coins"></i>
+                                <span>9,125 Coins</span>
+                            </div>
+                            <p class="reward-description">The ultimate achievement! Earn the Diamond Trophy after a full year of unwavering commitment to your habits.</p>
+                            <div class="progress-bar">
+                                <div class="progress" style="width: 100%"></div>
+                            </div>
+                            <button class="btn btn-primary">Redeem Now</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="rewards-more">
+                    <p>Want to see more rewards or redeem your coins?</p>
+                    <a href="index.html?from=services" class="btn btn-secondary">Login to Access All Rewards</a>
+                </div>
+            </div>
+        </section>
+
+        <section class="cta">
+            <div class="cta-content">
+                <h2>Ready to Start Earning Rewards?</h2>
+                <p>Join our platform today and begin building habits that transform your life.</p>
+                <a href="index.html?from=services" class="btn btn-primary">Get Started Now</a>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-logo">
+                <h3>We Are Habit Builders</h3>
+                <p>Transform your life one habit at a time</p>
+            </div>
+            <div class="footer-links">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="services.html">Services</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-links">
+                <h4>Resources</h4>
+                <ul>
+                    <li><a href="rewards.html">Rewards</a></li>
+                    <li><a href="#">Blog</a></li>
+                    <li><a href="#">FAQs</a></li>
+                </ul>
+            </div>
+            <div class="footer-newsletter">
+                <h4>Stay Updated</h4>
+                <form>
+                    <input type="email" placeholder="Enter your email">
+                    <button type="submit" class="btn btn-secondary">Subscribe</button>
+                </form>
+                <div class="social-icons">
+                    <a href="#"><i class="fab fa-facebook"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-youtube"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2023 We Are Habit Builders. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+    <script src="js/rewards.js"></script>
+</body>
+</html> 

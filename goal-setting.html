@@ -1,0 +1,992 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Goal Setting - We Are Habit Builders</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #4f46e5;
+            --secondary-color: #f97316;
+            --tertiary-color: #7c3aed;
+            --light-color: #f8fafc;
+            --dark-color: #1e293b;
+            --gray-color: #94a3b8;
+            --gradient-primary: linear-gradient(135deg, var(--primary-color), var(--tertiary-color));
+            --gradient-secondary: linear-gradient(135deg, var(--secondary-color), var(--primary-color));
+            --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--light-color);
+            color: var(--dark-color);
+            min-height: 100vh;
+            line-height: 1.6;
+            padding-top: 80px; /* Add padding to account for fixed navbar */
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .back-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.8rem 1.5rem;
+            background: var(--gradient-primary);
+            color: white;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 500;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            margin: 1rem 0 2rem 0;
+            position: relative;
+            z-index: 1;
+        }
+
+        .back-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+            background: var(--gradient-secondary);
+        }
+
+        .title-section {
+            text-align: center;
+            margin-bottom: 4rem;
+            animation: fadeIn 1s ease-out;
+        }
+
+        .title-section h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .title-section p {
+            font-size: 1.2rem;
+            color: var(--gray-color);
+        }
+
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .info-card {
+            background: white;
+            border-radius: 20px;
+            padding: 2rem;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            opacity: 0;
+            transform: translateY(20px);
+        }
+
+        .info-card.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .info-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+        }
+
+        .info-card h2 {
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .info-card p {
+            color: var(--gray-color);
+            margin-bottom: 1.5rem;
+        }
+
+        .info-card .icon {
+            font-size: 2.5rem;
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+
+        .actionable-example-card {
+            background: linear-gradient(135deg, #f6f9fc 0%, #eef2f7 100%);
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            margin: 2rem 0;
+        }
+
+        .actionable-example-card.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .actionable-example-card h2 {
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            text-align: center;
+        }
+
+        .example-comparison {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .example-card {
+            padding: 2rem;
+            border-radius: 15px;
+            background: white;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+        }
+
+        .example-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+        }
+
+        .example-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--primary-color);
+        }
+
+        .example-card p {
+            color: var(--gray-color);
+            font-size: 1.1rem;
+        }
+
+        .example-card.correct {
+            border-left: 4px solid #10b981;
+        }
+
+        .example-card.incorrect {
+            border-left: 4px solid #ef4444;
+        }
+
+        .smart-goals-card {
+            grid-column: 1 / -1;
+            background: white;
+            border-radius: 20px;
+            padding: 2rem;
+            box-shadow: var(--shadow);
+            margin-bottom: 2rem;
+        }
+
+        .smart-goals {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .smart-item {
+            text-align: center;
+            padding: 1.5rem;
+            background: white;
+            border-radius: 15px;
+            transition: var(--transition);
+            cursor: pointer;
+            box-shadow: var(--shadow);
+        }
+
+        .smart-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+            background: var(--gradient-primary);
+            color: white;
+        }
+
+        .smart-item:hover h3,
+        .smart-item:hover p {
+            color: white;
+        }
+
+        .smart-item h3 {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+            color: var(--primary-color);
+            transition: var(--transition);
+        }
+
+        .smart-item p {
+            color: var(--gray-color);
+            transition: var(--transition);
+        }
+
+        .golden-rule {
+            text-align: center;
+            padding: 2rem;
+            background: var(--gradient-primary);
+            color: white;
+            border-radius: 15px;
+            margin-top: 2rem;
+            font-weight: 600;
+            box-shadow: var(--shadow);
+        }
+
+        .quote-card {
+            text-align: center;
+            padding: 2rem;
+            background: white;
+            border-radius: 15px;
+            margin-top: 4rem;
+            font-style: italic;
+            position: relative;
+            box-shadow: var(--shadow);
+        }
+
+        .quote-card::before {
+            content: '"';
+            font-size: 5rem;
+            position: absolute;
+            top: -20px;
+            left: 20px;
+            color: rgba(0, 0, 0, 0.1);
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 1rem 2rem;
+            background: var(--gradient-primary);
+            color: white;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            margin-top: 3rem;
+            transition: var(--transition);
+            position: relative;
+            box-shadow: var(--shadow);
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+            background: var(--gradient-secondary);
+        }
+
+        .cta-button::after {
+            content: 'Ready when you are!';
+            position: absolute;
+            bottom: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--dark-color);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            font-size: 0.8rem;
+            opacity: 0;
+            transition: var(--transition);
+            white-space: nowrap;
+        }
+
+        .cta-button:hover::after {
+            opacity: 1;
+            transform: translateX(-50%) translateY(-10px);
+        }
+
+        .goal-card-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 2rem 0;
+            margin: 2rem 0;
+        }
+
+        .goal-card {
+            background: var(--gradient-primary);
+            color: white;
+            padding: 2.5rem;
+            border-radius: 25px;
+            max-width: 800px;
+            width: 100%;
+            box-shadow: var(--shadow);
+            opacity: 0;
+            transform: translateY(20px);
+            transition: var(--transition);
+        }
+
+        .goal-card.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .goal-card h2 {
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+            color: white;
+        }
+
+        .goal-card p {
+            margin-bottom: 1rem;
+            line-height: 1.8;
+        }
+
+        .goal-card hr {
+            border: none;
+            height: 2px;
+            background: rgba(255, 255, 255, 0.2);
+            margin: 2rem 0;
+        }
+
+        .goal-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+            color: white;
+        }
+
+        .goal-card ul {
+            list-style: none;
+            margin: 1.5rem 0;
+        }
+
+        .goal-card ul li {
+            margin-bottom: 1.5rem;
+            padding-left: 1.5rem;
+            position: relative;
+            line-height: 1.8;
+        }
+
+        .goal-card ul li::before {
+            content: "•";
+            position: absolute;
+            left: 0;
+            color: var(--secondary-color);
+        }
+
+        .goal-card blockquote {
+            margin: 2rem 0;
+            padding: 1.5rem;
+            background: rgba(255, 255, 255, 0.1);
+            border-left: 4px solid var(--secondary-color);
+            border-radius: 10px;
+            font-style: italic;
+        }
+
+        .goal-card button {
+            display: block;
+            width: 100%;
+            padding: 1rem 2rem;
+            background: white;
+            color: var(--primary-color);
+            border: none;
+            border-radius: 15px;
+            font-weight: 600;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: var(--transition);
+            margin-top: 2rem;
+        }
+
+        .goal-card button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+        }
+
+        .motivation-card {
+            background: linear-gradient(135deg, #f8fafc, #e2e8f0);
+            color: var(--dark-color);
+            padding: 2.5rem;
+            border-radius: 25px;
+            width: 100%;
+            max-width: 100%;
+            box-shadow: var(--shadow);
+            opacity: 0;
+            transform: translateY(20px);
+            transition: var(--transition);
+            margin: 2rem auto;
+        }
+
+        .motivation-card.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .motivation-card h2 {
+            text-align: center;
+            font-size: 2.2rem;
+            margin-bottom: 2rem;
+            color: var(--primary-color);
+            padding: 1.5rem;
+            border: 3px solid var(--primary-color);
+            border-radius: 15px;
+            background: rgba(79, 70, 229, 0.1);
+            box-shadow: 0 0 20px rgba(79, 70, 229, 0.2);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .motivation-card h2::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            border: 2px dashed rgba(79, 70, 229, 0.3);
+            border-radius: 12px;
+            pointer-events: none;
+        }
+
+        .motivation-card .highlight {
+            background: rgba(79, 70, 229, 0.1);
+            padding: 1.5rem;
+            border-radius: 15px;
+            margin: 1.5rem 0;
+        }
+
+        .motivation-card .example-list {
+            list-style: none;
+            margin: 1.5rem 0;
+        }
+
+        .motivation-card .example-list li {
+            margin-bottom: 1.5rem;
+            padding: 1.5rem;
+            background: rgba(79, 70, 229, 0.1);
+            border-radius: 15px;
+            transition: var(--transition);
+        }
+
+        .motivation-card .example-list li:hover {
+            transform: translateX(10px);
+            background: rgba(79, 70, 229, 0.15);
+        }
+
+        .motivation-card .example-list li h3 {
+            color: var(--primary-color);
+            margin-bottom: 0.5rem;
+            font-size: 1.2rem;
+        }
+
+        .motivation-card .example-list li p {
+            margin-bottom: 0.5rem;
+            color: var(--dark-color);
+        }
+
+        .motivation-card .example-list li .tip {
+            font-style: italic;
+            color: var(--gray-color);
+            font-size: 0.9rem;
+        }
+
+        .motivation-steps {
+            margin: 2rem 0;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .motivation-step {
+            background: rgba(79, 70, 229, 0.1);
+            border-radius: 15px;
+            padding: 1.5rem;
+            border: 1px solid rgba(79, 70, 229, 0.3);
+            transition: var(--transition);
+        }
+
+        .motivation-step:hover {
+            transform: translateY(-5px);
+            background: rgba(79, 70, 229, 0.15);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+        }
+
+        .motivation-step h3 {
+            color: var(--primary-color);
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .motivation-step p {
+            color: var(--dark-color);
+            margin-bottom: 1rem;
+            line-height: 1.6;
+        }
+
+        .motivation-step ul {
+            list-style: none;
+            margin: 1rem 0;
+        }
+
+        .motivation-step ul li {
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--dark-color);
+        }
+
+        .better-way {
+            background: rgba(79, 70, 229, 0.1);
+            border-radius: 15px;
+            padding: 2rem;
+            margin: 2rem 0;
+            border: 1px solid rgba(79, 70, 229, 0.3);
+        }
+
+        .better-way h3 {
+            color: var(--primary-color);
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 1.2rem;
+            border: 3px solid var(--primary-color);
+            border-radius: 12px;
+            background: rgba(79, 70, 229, 0.1);
+            box-shadow: 0 0 20px rgba(79, 70, 229, 0.2);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .better-way h3::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            border: 2px dashed rgba(79, 70, 229, 0.3);
+            border-radius: 9px;
+            pointer-events: none;
+        }
+
+        .better-way p {
+            color: var(--dark-color);
+            margin-bottom: 1rem;
+            line-height: 1.6;
+        }
+
+        .better-way strong {
+            color: var(--primary-color);
+        }
+
+        .better-way ul {
+            list-style: none;
+            margin: 1.5rem 0;
+        }
+
+        .better-way ul li {
+            margin-bottom: 0.8rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--dark-color);
+            padding-left: 1rem;
+            position: relative;
+        }
+
+        .better-way ul li::before {
+            content: "•";
+            position: absolute;
+            left: 0;
+            color: var(--primary-color);
+        }
+
+        .final-tip {
+            text-align: center;
+            padding: 2rem;
+            background: rgba(79, 70, 229, 0.1);
+            border-radius: 15px;
+            margin-top: 2rem;
+            font-size: 1.2rem;
+            font-weight: 500;
+            color: var(--primary-color);
+            border: 1px solid rgba(79, 70, 229, 0.3);
+        }
+
+        .final-tip br {
+            margin: 0.5rem 0;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 1rem;
+            }
+
+            .title-section h1 {
+                font-size: 2.5rem;
+            }
+
+            .cards-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .smart-goals {
+                grid-template-columns: 1fr;
+            }
+
+            .example-comparison {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .task-setup-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .task-card {
+            background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .task-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        .task-card .step-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #4CAF50 0%, #45a049 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .task-card .step-icon i {
+            font-size: 24px;
+            color: white;
+        }
+
+        .task-card h3 {
+            color: #333;
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+        }
+
+        .task-card p {
+            color: #666;
+            margin-bottom: 1rem;
+        }
+
+        .task-card ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        .task-card ul li {
+            color: #555;
+            margin-bottom: 0.5rem;
+            padding-left: 1.5rem;
+            position: relative;
+        }
+
+        .task-card ul li:before {
+            content: "•";
+            color: #4CAF50;
+            position: absolute;
+            left: 0;
+            font-weight: bold;
+        }
+
+        @media (max-width: 768px) {
+            .task-setup-cards {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="logo">
+                <span class="logo-text">We Are Habit Builders</span>
+            </div>
+            <div class="menu-toggle">
+                <i class="fas fa-bars"></i>
+            </div>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="services.html">Services</a></li>
+                <li><a href="goal-setting.html" class="active">Goal Setting</a></li>
+                <li><a href="rewards.html">Rewards</a></li>
+                <li><a href="redeem-coins.html">Redeem Coins</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="container">
+        <a href="index.html" class="back-button">
+            <i class="fas fa-arrow-left"></i>
+            Back to Home Page
+        </a>
+
+        <div class="title-section">
+            <h1>🎯 Let's Set Your Goal!</h1>
+            <p>Crafting your dream, one step at a time.</p>
+        </div>
+
+        <div class="cards-grid">
+            <div class="info-card" id="why-goals">
+                <div class="icon">
+                    <i class="fas fa-bullseye"></i>
+                </div>
+                <h2>Why Set Goals?</h2>
+                <p>Goals are like a compass for your life's journey. They provide direction, purpose, and a clear path forward. When you set meaningful goals, you're not just dreaming about the future – you're actively shaping it.</p>
+            </div>
+
+            <div class="goal-setting-image" style="text-align: center; margin: 2rem 0;">
+                <img src="images/goal setting.png" alt="Goal Setting" style="max-width: 100%; border-radius: 15px; box-shadow: var(--shadow);">
+            </div>
+
+            <div class="info-card" id="common-mistakes">
+                <div class="icon">
+                    <i class="fas fa-exclamation-triangle"></i>
+                </div>
+                <h2>Avoiding Common Mistakes</h2>
+                <ul style="list-style: none;">
+                    <li style="margin-bottom: 1rem;">
+                        <span style="color: #ef4444;">❌</span>
+                        Don't overcommit on day 1
+                    </li>
+                    <li style="margin-bottom: 1rem;">
+                        <span style="color: #10b981;">✅</span>
+                        Start small to build momentum
+                    </li>
+                    <li>
+                        <span style="color: #fbbf24;">⚠️</span>
+                        Consistency beats intensity
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="actionable-example-card">
+            <h2>Actionable Example</h2>
+            <div class="example-comparison">
+                <div class="example-card incorrect">
+                    <h3>Not SMART</h3>
+                    <p>"I'll finish my syllabus this week."</p>
+                </div>
+                <div class="example-card correct">
+                    <h3>SMART Goal</h3>
+                    <p>"I'll complete 1 chapter of physics daily at 5 PM."</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="task-setup-cards">
+            <div class="task-card">
+                <div class="step-icon">
+                    <i class="fas fa-camera"></i>
+                </div>
+                <h3>1. Pre-Task Setup</h3>
+                <p>Upload 2 images showing your task setup:</p>
+                <ul>
+                    <li>A selfie with your study/workout setup</li>
+                    <li>A photo of your task materials or environment</li>
+                </ul>
+            </div>
+
+            <div class="task-card">
+                <div class="step-icon">
+                    <i class="fas fa-check-circle"></i>
+                </div>
+                <h3>2. Post-Task Evidence</h3>
+                <p>Upload images showing completed task results:</p>
+                <ul>
+                    <li>A photo showing your completed work</li>
+                    <li>Evidence that you've finished the habit</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="motivation-card">
+            <h2>🧠 Why You Should Set Fewer Goals (At First)</h2>
+            
+            <div class="motivation-steps">
+                <div class="motivation-step">
+                    <h3>🔹 Step 1: You feel super motivated 🔥</h3>
+                    <p>You watched a motivational video or just decided it's time to fix your life. You're full of energy and you want to do everything at once.</p>
+                    <p>So you set 5–6 big goals like:</p>
+                    <ul>
+                        <li>• Study 4 hours daily</li>
+                        <li>• Start gym</li>
+                        <li>• Read a book</li>
+                        <li>• Learn a new skill</li>
+                        <li>• Meditate</li>
+                        <li>• Sleep early</li>
+                    </ul>
+                </div>
+
+                <div class="motivation-step">
+                    <h3>🔹 Step 2: You follow it on Day 1 ✅</h3>
+                    <p>You're excited. You might even complete all your tasks on the first day. You feel proud.</p>
+                </div>
+
+                <div class="motivation-step">
+                    <h3>🔹 Step 3: Day 2 feels harder 😓</h3>
+                    <p>Now your mind is like:</p>
+                    <p>"Uff… again 6 things? I'm tired."</p>
+                    <p>Maybe you complete some, maybe you skip some.</p>
+                </div>
+
+                <div class="motivation-step">
+                    <h3>🔹 Step 4: Day 3 you feel lazy or skip everything 😴</h3>
+                    <p>And suddenly, you're not as motivated anymore. You might even feel like a failure. You don't feel good, and now it's easier to quit.</p>
+                </div>
+            </div>
+
+            <div class="better-way">
+                <h3>✅ So what's the better way?</h3>
+                <p><strong>🔸 Start with just 1–2 small goals</strong></p>
+                <p>Pick only a few important things, like:</p>
+                <ul>
+                    <li>"Study one topic every day"</li>
+                    <li>"Do 10 push-ups"</li>
+                    <li>"Read 2 pages of a book"</li>
+                </ul>
+
+                <p><strong>🔸 Why this works:</strong></p>
+                <ul>
+                    <li>Your mind feels relaxed (because it's not overloaded)</li>
+                    <li>You actually complete your task</li>
+                    <li>That success makes you happy and motivated</li>
+                    <li>Slowly, your confidence increases</li>
+                    <li>→ You build momentum</li>
+                </ul>
+
+                <p><strong>🔸 After 5–6 days of success:</strong></p>
+                <p>Now your brain is used to it. You feel stronger and more focused.</p>
+                <p>👉 This is the right time to add 1 more task.</p>
+            </div>
+
+            <div class="final-tip">
+                🧩 Final Tip:<br>
+                If you want to build long-lasting habits, don't rush.<br>
+                Build slowly → Stay consistent → Win big.
+            </div>
+        </div>
+
+        <div class="smart-goals-card">
+            <h2>SMART Goals Framework</h2>
+            <p>The SMART framework helps you create goals that are clear and achievable. Each letter represents a key characteristic of effective goal setting:</p>
+            <div class="smart-goals">
+                <div class="smart-item">
+                    <h3>S</h3>
+                    <p>Specific</p>
+                </div>
+                <div class="smart-item">
+                    <h3>M</h3>
+                    <p>Measurable</p>
+                </div>
+                <div class="smart-item">
+                    <h3>A</h3>
+                    <p>Achievable</p>
+                </div>
+                <div class="smart-item">
+                    <h3>R</h3>
+                    <p>Relevant</p>
+                </div>
+                <div class="smart-item">
+                    <h3>T</h3>
+                    <p>Time-bound</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="golden-rule">
+            One goal → One habit → Daily consistency
+        </div>
+
+        <div class="quote-card">
+            <p>"You don't rise to the level of your goals. You fall to the level of your systems."</p>
+            <p style="margin-top: 1rem;">– James Clear</p>
+        </div>
+
+        <div style="text-align: center;">
+            <a href="task.html" class="cta-button">
+                Set My First Goal
+            </a>
+        </div>
+    </div>
+
+    <script>
+        // Intersection Observer for scroll animations
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, {
+            threshold: 0.1
+        });
+
+        // Observe all cards
+        document.querySelectorAll('.info-card, .actionable-example-card, .goal-card, .motivation-card').forEach(card => {
+            observer.observe(card);
+        });
+
+        // Add hover effect to SMART items
+        document.querySelectorAll('.smart-item').forEach(item => {
+            item.addEventListener('mouseenter', () => {
+                item.style.transform = 'translateY(-5px)';
+                item.style.boxShadow = '0 8px 16px rgba(0, 0, 0, 0.1)';
+            });
+            item.addEventListener('mouseleave', () => {
+                item.style.transform = 'translateY(0)';
+                item.style.boxShadow = 'none';
+            });
+        });
+    </script>
+</body>
+</html> 

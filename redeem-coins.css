@@ -1,0 +1,1023 @@
+/* Premium Section Styles */
+.premium-section {
+    background: linear-gradient(135deg, #1a237e, #0d47a1);
+    color: white;
+    padding: 4rem 2rem;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.premium-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="40" fill="none" stroke="%23ffd700" stroke-width="2"/></svg>') center/cover;
+    opacity: 0.1;
+}
+
+.premium-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    position: relative;
+}
+
+.premium-content h2 {
+    font-size: 2.5rem;
+    margin-bottom: 2rem;
+    font-weight: 700;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+    color: #ffd700;
+}
+
+.premium-benefits {
+    display: flex;
+    justify-content: center;
+    gap: 3rem;
+    margin-bottom: 2rem;
+}
+
+.benefit {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    padding: 2rem;
+    background: rgba(255,255,255,0.1);
+    border-radius: 15px;
+    backdrop-filter: blur(5px);
+    transition: all 0.3s ease;
+    border: 2px solid #ffd700;
+    position: relative;
+    overflow: hidden;
+}
+
+.benefit::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(45deg, transparent, rgba(255,215,0,0.1), transparent);
+    animation: shine 3s infinite;
+}
+
+@keyframes shine {
+    0% { transform: translateX(-100%); }
+    100% { transform: translateX(100%); }
+}
+
+.benefit:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 0 20px rgba(255,215,0,0.3);
+}
+
+.benefit i {
+    font-size: 2.5rem;
+    color: #ffd700;
+    text-shadow: 0 0 10px rgba(255,215,0,0.5);
+}
+
+.benefit p {
+    font-size: 1.1rem;
+    max-width: 250px;
+}
+
+.btn-premium {
+    background: linear-gradient(45deg, #ffd700, #ffa000);
+    color: #1a237e;
+    font-weight: 600;
+    padding: 1rem 2rem;
+    border-radius: 50px;
+    border: 2px solid #ffd700;
+    font-size: 1.1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(255,215,0,0.4);
+    position: relative;
+    overflow: hidden;
+}
+
+.btn-premium::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(45deg, transparent, rgba(255,255,255,0.2), transparent);
+    animation: shine 3s infinite;
+}
+
+.btn-premium:hover {
+    transform: scale(1.05);
+    box-shadow: 0 6px 20px rgba(255,215,0,0.6);
+}
+
+/* Game-like Level Progression Styles */
+.roadmap-section {
+    padding: 4rem 2rem;
+    background-color: #f8f9fa;
+    position: relative;
+    background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><path d="M0,0 L100,0 L100,100 L0,100 Z" fill="none" stroke="%23e0e0e0" stroke-width="1"/></svg>');
+    background-size: 20px 20px;
+    overflow: hidden;
+}
+
+.roadmap-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    position: relative;
+}
+
+.roadmap-container::before {
+    content: '';
+    position: absolute;
+    left: 50%;
+    top: 0;
+    bottom: 0;
+    width: 4px;
+    background: linear-gradient(to bottom, #ffd700, #ffa000);
+    transform: translateX(-50%);
+    z-index: 0;
+    border-radius: 2px;
+    box-shadow: 0 0 10px rgba(255,215,0,0.3);
+}
+
+.roadmap-container::after {
+    content: '';
+    position: absolute;
+    left: 50%;
+    top: 0;
+    bottom: 0;
+    width: 4px;
+    background: linear-gradient(to bottom, #ffd700, #ffa000);
+    transform: translateX(-50%) translateY(2px);
+    z-index: 0;
+    border-radius: 2px;
+    filter: blur(2px);
+    opacity: 0.5;
+}
+
+.roadmap-item {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    padding: 2rem;
+    background: white;
+    border-radius: 15px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+    border: 2px solid #ffd700;
+    max-width: 80%;
+    margin: 0 auto;
+    z-index: 1;
+}
+
+.roadmap-item:nth-child(odd) {
+    margin-left: 0;
+}
+
+.roadmap-item:nth-child(even) {
+    margin-right: 0;
+}
+
+.roadmap-item::before {
+    display: none;
+}
+
+.roadmap-item::after {
+    display: none;
+}
+
+.roadmap-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+}
+
+.roadmap-icon {
+    width: 120px;
+    height: 120px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 50%;
+    border: 2px solid #ffd700;
+    padding: 1rem;
+    margin: 0 auto;
+    position: relative;
+    z-index: 2;
+}
+
+.roadmap-icon::before {
+    content: '';
+    position: absolute;
+    top: -5px;
+    left: -5px;
+    right: -5px;
+    bottom: -5px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(255, 215, 0, 0.2) 0%, transparent 70%);
+    z-index: -1;
+}
+
+.roadmap-icon img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+    filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.3));
+    transition: transform 0.3s ease;
+}
+
+.roadmap-item:hover .roadmap-icon img {
+    transform: scale(1.1);
+}
+
+.roadmap-content {
+    text-align: center;
+    margin-top: 1.5rem;
+    position: relative;
+    z-index: 2;
+    padding: 1.5rem;
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 15px;
+    border: 2px solid #ffd700;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+.roadmap-content h3 {
+    color: #1a237e;
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+    text-shadow: none;
+}
+
+.roadmap-content h4 {
+    color: #1a237e;
+    font-size: 1.2rem;
+    margin-bottom: 1rem;
+    font-weight: 600;
+}
+
+.roadmap-content p {
+    color: #333;
+    line-height: 1.6;
+    margin-bottom: 1.5rem;
+    opacity: 1;
+}
+
+.roadmap-details {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    margin-top: 1rem;
+}
+
+.coin-count, .time-period {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem 1rem;
+    background: rgba(26, 35, 126, 0.1);
+    border-radius: 20px;
+    border: 1px solid #1a237e;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.coin-count i, .time-period i {
+    color: #1a237e;
+    font-size: 1.2rem;
+}
+
+.coin-count span, .time-period span {
+    color: #1a237e;
+    font-weight: 600;
+    font-size: 1rem;
+}
+
+/* Add hover effects */
+.coin-count:hover, .time-period:hover {
+    background: rgba(26, 35, 126, 0.2);
+    transform: translateY(-2px);
+    transition: all 0.3s ease;
+}
+
+/* Rewards Section Styles */
+.rewards-section {
+    padding: 4rem 2rem;
+    background-color: white;
+    position: relative;
+}
+
+.rewards-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2rem;
+    padding: 0 2rem;
+}
+
+.reward-card {
+    background: white;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    transition: all 0.3s ease;
+    position: relative;
+    border: 2px solid #ffd700;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.reward-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 5px;
+    background: linear-gradient(90deg, #ffd700, #ffa000);
+}
+
+.reward-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+}
+
+.reward-image {
+    height: 200px;
+    background: #f8f9fa;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+    padding: 1rem;
+    border-radius: 50%;
+    aspect-ratio: 1/1;
+}
+
+.reward-image::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(circle, rgba(255,215,0,0.1) 0%, transparent 70%);
+    border-radius: 50%;
+}
+
+.reward-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    filter: drop-shadow(0 4px 8px rgba(0,0,0,0.2));
+    transition: transform 0.3s ease;
+    padding: 1rem;
+}
+
+.reward-card:hover .reward-image img {
+    transform: scale(1.05);
+}
+
+/* Add specific styles for diamond trophy image */
+.reward-card:nth-child(4) .reward-image img {
+    padding: 0.5rem;
+    object-fit: cover;
+}
+
+.reward-content {
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+}
+
+.reward-content h3 {
+    color: #1a237e;
+    font-size: 1.3rem;
+    margin-bottom: 0.5rem;
+    text-align: center;
+}
+
+.coin-cost {
+    color: #ffa000;
+    font-weight: 600;
+    font-size: 1.1rem;
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+}
+
+.coin-cost::before {
+    content: '🪙';
+    font-size: 1.2rem;
+}
+
+.reward-description {
+    color: #666;
+    margin-bottom: 1.5rem;
+    line-height: 1.6;
+    text-align: center;
+    flex-grow: 1;
+}
+
+.progress-bar {
+    height: 8px;
+    background: #e0e0e0;
+    border-radius: 4px;
+    margin-bottom: 1.5rem;
+    overflow: hidden;
+}
+
+.progress {
+    height: 100%;
+    background: linear-gradient(90deg, #ffd700, #ffa000);
+    border-radius: 4px;
+}
+
+.btn-redeem {
+    width: 100%;
+    padding: 0.8rem;
+    background: linear-gradient(45deg, #1a237e, #0d47a1);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border: 2px solid #ffd700;
+    margin-top: auto;
+}
+
+.btn-redeem:hover {
+    background: linear-gradient(45deg, #0d47a1, #1a237e);
+    transform: translateY(-2px);
+}
+
+/* Responsive Design */
+@media (max-width: 1200px) {
+    .rewards-container {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 2rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .rewards-container {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+        padding: 0 1rem;
+    }
+}
+
+/* Animations */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.roadmap-item, .reward-card {
+    animation: fadeIn 0.6s ease forwards;
+}
+
+.roadmap-item:nth-child(2) {
+    animation-delay: 0.2s;
+}
+
+.roadmap-item:nth-child(3) {
+    animation-delay: 0.4s;
+}
+
+.roadmap-item:nth-child(4) {
+    animation-delay: 0.6s;
+}
+
+/* Premium Form Section Styles */
+.premium-form-section {
+    padding: 4rem 2rem;
+    background: linear-gradient(135deg, #1a237e, #0d47a1);
+    color: white;
+    position: relative;
+    overflow: hidden;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+}
+
+.premium-form-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="40" fill="none" stroke="%23ffd700" stroke-width="2"/></svg>') center/cover;
+    opacity: 0.1;
+}
+
+.premium-form-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    width: 100%;
+    position: relative;
+    z-index: 1;
+}
+
+.premium-form-content {
+    width: 100%;
+}
+
+.premium-form-content h2 {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+    color: #ffd700;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+    text-align: center;
+}
+
+.premium-subtitle {
+    font-size: 1.4rem;
+    margin-bottom: 3rem;
+    opacity: 0.9;
+    text-align: center;
+}
+
+.premium-form {
+    background: rgba(255, 255, 255, 0.1);
+    padding: 2rem;
+    border-radius: 15px;
+    backdrop-filter: blur(5px);
+    border: 2px solid #ffd700;
+}
+
+.form-group {
+    margin-bottom: 1.5rem;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+}
+
+.form-group input,
+.form-group select {
+    width: 100%;
+    padding: 0.8rem;
+    border-radius: 8px;
+    border: 2px solid #ffd700;
+    background: rgba(255, 255, 255, 0.1);
+    color: white;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+}
+
+.form-group input:focus,
+.form-group select:focus {
+    outline: none;
+    background: rgba(255, 255, 255, 0.2);
+    box-shadow: 0 0 10px rgba(255, 215, 0, 0.3);
+}
+
+.form-group input::placeholder {
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.premium-features {
+    margin: 2rem 0;
+    padding: 1.5rem;
+    background: rgba(255, 215, 0, 0.1);
+    border-radius: 10px;
+    border: 1px solid #ffd700;
+}
+
+.premium-features h3 {
+    color: #ffd700;
+    margin-bottom: 1rem;
+    font-size: 1.3rem;
+}
+
+.premium-features ul {
+    list-style: none;
+    padding: 0;
+}
+
+.premium-features li {
+    margin-bottom: 0.8rem;
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+}
+
+.premium-features i {
+    color: #ffd700;
+}
+
+.btn-premium-submit {
+    width: 100%;
+    padding: 1.2rem;
+    background: linear-gradient(45deg, #ffd700, #ffa000);
+    color: #1a237e;
+    border: none;
+    border-radius: 12px;
+    font-weight: 600;
+    font-size: 1.2rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border: 2px solid #ffd700;
+    margin-top: auto;
+}
+
+.btn-premium-submit:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(255, 215, 0, 0.4);
+}
+
+.premium-image {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.premium-image img {
+    max-width: 100%;
+    height: auto;
+    filter: drop-shadow(0 4px 8px rgba(0,0,0,0.2));
+    animation: float 3s ease-in-out infinite;
+}
+
+@keyframes float {
+    0% { transform: translateY(0px); }
+    50% { transform: translateY(-10px); }
+    100% { transform: translateY(0px); }
+}
+
+/* Responsive Design */
+@media (max-width: 992px) {
+    .premium-form-container {
+        flex-direction: column;
+        gap: 2rem;
+    }
+
+    .premium-image {
+        order: -1;
+    }
+
+    .premium-image img {
+        max-width: 300px;
+    }
+}
+
+@media (max-width: 768px) {
+    .premium-form-section {
+        padding: 3rem 1rem;
+    }
+
+    .premium-form-content h2 {
+        font-size: 2.5rem;
+    }
+
+    .premium-form {
+        padding: 1.5rem;
+    }
+}
+
+/* Subscription Options Styles */
+.subscription-options {
+    display: flex;
+    gap: 3rem;
+    margin-top: 2rem;
+    opacity: 0;
+    transform: translateY(50px);
+    animation: slideIn 0.8s ease forwards;
+}
+
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateY(50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.subscription-card {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 20px;
+    padding: 3rem;
+    border: 2px solid #ffd700;
+    position: relative;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(5px);
+    opacity: 1;
+    transform: translateY(0);
+    min-height: 600px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.subscription-card.monthly {
+    animation: popIn 0.5s ease-out forwards;
+}
+
+.subscription-card.yearly {
+    animation: popIn 0.5s ease-out forwards;
+    animation-delay: 0.2s;
+}
+
+@keyframes popIn {
+    0% {
+        opacity: 0;
+        transform: scale(0.8) translateY(20px);
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+    }
+}
+
+.subscription-card:hover {
+    transform: translateY(-5px) scale(1.02);
+    box-shadow: 0 5px 15px rgba(255, 215, 0, 0.3);
+}
+
+.subscription-badge {
+    position: absolute;
+    top: -15px;
+    right: 20px;
+    background: #ffd700;
+    color: #1a237e;
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    font-weight: 600;
+    font-size: 0.9rem;
+}
+
+.subscription-header {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.subscription-header h3 {
+    color: #ffd700;
+    font-size: 2rem;
+    margin-bottom: 1.5rem;
+}
+
+.price {
+    display: flex;
+    align-items: baseline;
+    justify-content: center;
+    gap: 0.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.amount {
+    font-size: 3.5rem;
+    font-weight: 700;
+    color: white;
+}
+
+.period {
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 1.2rem;
+}
+
+.savings {
+    color: #ffd700;
+    font-weight: 600;
+    font-size: 1.1rem;
+    text-align: center;
+    margin-top: 0.5rem;
+}
+
+.subscription-features {
+    margin: 2.5rem 0;
+}
+
+.subscription-features ul {
+    list-style: none;
+    padding: 0;
+}
+
+.subscription-features li {
+    margin-bottom: 1.2rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    color: white;
+    font-size: 1.1rem;
+}
+
+.subscription-features i {
+    color: #ffd700;
+    font-size: 1.2rem;
+}
+
+.btn-premium-submit {
+    width: 100%;
+    padding: 1.2rem;
+    background: linear-gradient(45deg, #ffd700, #ffa000);
+    color: #1a237e;
+    border: none;
+    border-radius: 12px;
+    font-weight: 600;
+    font-size: 1.2rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border: 2px solid #ffd700;
+    margin-top: auto;
+}
+
+.btn-premium-submit:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(255, 215, 0, 0.4);
+}
+
+@media (max-width: 1200px) {
+    .subscription-options {
+        flex-direction: column;
+        gap: 2rem;
+    }
+
+    .subscription-card {
+        min-height: auto;
+        padding: 2rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .premium-form-section {
+        padding: 3rem 1rem;
+    }
+
+    .premium-form-content h2 {
+        font-size: 2.5rem;
+    }
+
+    .subscription-card {
+        padding: 1.5rem;
+    }
+
+    .amount {
+        font-size: 2.5rem;
+    }
+}
+
+.time-requirement {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin: 0.5rem 0;
+    padding: 0.5rem 1rem;
+    background: linear-gradient(135deg, #1a237e, #0d47a1);
+    border-radius: 20px;
+    color: #ffd700;
+    font-weight: 600;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+    border: 2px solid #ffd700;
+}
+
+.time-requirement i {
+    font-size: 1.2rem;
+    color: #ffd700;
+}
+
+.time-requirement span {
+    font-size: 1.1rem;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+.reward-card:hover .time-requirement {
+    transform: scale(1.05);
+    box-shadow: 0 4px 12px rgba(255, 215, 0, 0.3);
+    transition: all 0.3s ease;
+}
+
+.subscription-card.monthly {
+    transition-delay: 0.2s;
+}
+
+.subscription-card.yearly {
+    transition-delay: 0.4s;
+}
+
+.subscription-card.info-card {
+    background: linear-gradient(135deg, #1a237e, #0d47a1);
+    border: 2px solid #ffd700;
+    box-shadow: 0 0 20px rgba(255, 215, 0, 0.3);
+    min-height: 600px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 2rem;
+    position: relative;
+    overflow: hidden;
+}
+
+.subscription-card.info-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(45deg, rgba(255, 215, 0, 0.1), rgba(26, 35, 126, 0.3));
+    z-index: 1;
+}
+
+.subscription-card.info-card .subscription-header {
+    text-align: center;
+    margin-bottom: 2rem;
+    position: relative;
+    z-index: 2;
+}
+
+.subscription-card.info-card .info-icon {
+    font-size: 3rem;
+    color: #ffd700;
+    margin: 1rem 0;
+    animation: pulse 2s infinite;
+}
+
+.subscription-card.info-card .info-content {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+}
+
+.subscription-card.info-card h4 {
+    color: #ffd700;
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+}
+
+.subscription-card.info-card p {
+    color: #ffffff;
+    margin-bottom: 1.5rem;
+    line-height: 1.6;
+}
+
+.subscription-card.info-card .funds-usage {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+    padding: 1.5rem;
+    margin: 1.5rem 0;
+}
+
+.subscription-card.info-card .usage-item {
+    display: flex;
+    align-items: center;
+    margin: 1rem 0;
+    color: #ffffff;
+}
+
+.subscription-card.info-card .usage-item i {
+    color: #ffd700;
+    margin-right: 1rem;
+    font-size: 1.2rem;
+}
+
+.subscription-card.info-card .impact-text {
+    font-style: italic;
+    color: #ffd700;
+    margin-top: 1.5rem;
+}
+
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.1);
+    }
+    100% {
+        transform: scale(1);
+    }
+} 

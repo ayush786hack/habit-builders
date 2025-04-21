@@ -1,0 +1,516 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Progress Tracking - We Are Habit Builders</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #4f46e5;
+            --secondary-color: #f97316;
+            --tertiary-color: #7c3aed;
+            --success-color: #10b981;
+            --warning-color: #f59e0b;
+            --danger-color: #ef4444;
+            --light-color: #f8fafc;
+            --dark-color: #1e293b;
+            --gray-color: #94a3b8;
+            --gradient-primary: linear-gradient(135deg, var(--primary-color), var(--tertiary-color));
+            --gradient-secondary: linear-gradient(135deg, var(--secondary-color), var(--primary-color));
+            --gradient-success: linear-gradient(135deg, var(--success-color), #34d399);
+            --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #f0f4ff, #e6e9ff);
+            color: var(--dark-color);
+            min-height: 100vh;
+            line-height: 1.6;
+            padding-top: 80px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .hero-section {
+            text-align: center;
+            margin-bottom: 4rem;
+            animation: fadeIn 1s ease-out;
+        }
+
+        .hero-section h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .hero-section p {
+            font-size: 1.2rem;
+            color: var(--gray-color);
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .section {
+            margin-bottom: 4rem;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+
+        .section.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2rem;
+            margin-bottom: 2rem;
+            color: var(--dark-color);
+            position: relative;
+            padding-bottom: 1rem;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: var(--gradient-primary);
+            border-radius: 2px;
+        }
+
+        .card {
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 20px;
+            padding: 2.5rem;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .card-icon {
+            font-size: 3rem;
+            margin-bottom: 1.5rem;
+            color: var(--primary-color);
+            background: linear-gradient(135deg, rgba(79, 70, 229, 0.1), rgba(124, 58, 237, 0.1));
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .card h3 {
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+            color: var(--dark-color);
+        }
+
+        .card p {
+            color: var(--gray-color);
+            font-size: 1.1rem;
+            line-height: 1.8;
+            margin-bottom: 1.5rem;
+        }
+
+        .card-image {
+            width: 100%;
+            max-width: 500px;
+            border-radius: 10px;
+            margin: 1.5rem 0;
+            box-shadow: var(--shadow);
+        }
+
+        .cta-section {
+            text-align: center;
+            margin: 4rem 0;
+        }
+
+        .cta-section h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .cta-section p {
+            font-size: 1.2rem;
+            color: var(--gray-color);
+            max-width: 700px;
+            margin: 0 auto 2rem;
+        }
+
+        .btn-primary {
+            display: inline-block;
+            background: var(--gradient-primary);
+            color: white;
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: var(--transition);
+            box-shadow: 0 4px 15px rgba(79, 70, 229, 0.3);
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(79, 70, 229, 0.4);
+        }
+
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .feature-item {
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 15px;
+            padding: 1.5rem;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+
+        .feature-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .feature-icon {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            color: var(--primary-color);
+        }
+
+        .feature-item h3 {
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+            color: var(--dark-color);
+        }
+
+        .feature-item p {
+            color: var(--gray-color);
+            font-size: 0.95rem;
+        }
+
+        .demo-image {
+            width: 100%;
+            max-width: 600px;
+            border-radius: 10px;
+            margin: 2rem 0;
+            box-shadow: var(--shadow);
+        }
+
+        .message-box {
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 15px;
+            padding: 1.5rem;
+            box-shadow: var(--shadow);
+            margin: 1.5rem 0;
+            border-left: 4px solid var(--danger-color);
+            display: flex;
+            align-items: center;
+        }
+
+        .message-icon {
+            font-size: 1.5rem;
+            color: var(--danger-color);
+            margin-right: 1rem;
+        }
+
+        .message-text {
+            color: var(--dark-color);
+            font-size: 1.1rem;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 1rem;
+            }
+
+            .hero-section h1 {
+                font-size: 2.5rem;
+            }
+
+            .section-title {
+                font-size: 1.8rem;
+            }
+
+            .card {
+                padding: 1.5rem;
+            }
+
+            .card h3 {
+                font-size: 1.5rem;
+            }
+
+            .card p {
+                font-size: 1rem;
+            }
+
+            .cta-section h2 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="logo">
+                <span class="logo-text">We Are Habit Builders</span>
+            </div>
+            <div class="menu-toggle">
+                <i class="fas fa-bars"></i>
+            </div>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="services.html">Services</a></li>
+                <li><a href="goal-setting.html">Goal Setting</a></li>
+                <li><a href="rewards.html">Rewards</a></li>
+                <li><a href="redeem-coins.html">Redeem Coins</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="container">
+        <div class="hero-section">
+            <h1>📊 Progress Tracking</h1>
+            <p>Understand how we help you stay consistent, motivated, and aware of your journey.</p>
+        </div>
+
+        <div class="section" id="visualize-growth">
+            <h2 class="section-title">Visualize Your Growth</h2>
+            <div class="card">
+                <div class="card-icon">
+                    <i class="fas fa-chart-line"></i>
+                </div>
+                <h3>See Your Progress at a Glance</h3>
+                <p>Our intuitive charts provide a clear visual representation of your daily task completion. You can easily see patterns in your consistency, identify areas for improvement, and celebrate your progress over time.</p>
+                <img src="https://via.placeholder.com/600x300?text=Progress+Chart+Example" alt="Progress Chart Example" class="card-image">
+                <p>Whether you're tracking daily meditation, reading, or exercise, our visual tools help you understand your habits better and make informed decisions about your routine.</p>
+            </div>
+        </div>
+
+        <div class="section" id="track-streaks">
+            <h2 class="section-title">Track Streaks & Milestones</h2>
+            <div class="card">
+                <div class="card-icon">
+                    <i class="fas fa-fire"></i>
+                </div>
+                <h3>Build Momentum with Streaks</h3>
+                <p>Every day you complete your tasks, your streak grows stronger. We calculate your daily streak automatically, providing you with a powerful motivator to maintain consistency.</p>
+                <div class="feature-grid">
+                    <div class="feature-item">
+                        <div class="feature-icon">
+                            <i class="fas fa-calendar-check"></i>
+                        </div>
+                        <h3>Daily Tracking</h3>
+                        <p>We record your daily progress and update your streak in real-time.</p>
+                    </div>
+                    <div class="feature-item">
+                        <div class="feature-icon">
+                            <i class="fas fa-coins"></i>
+                        </div>
+                        <h3>Earn Rewards</h3>
+                        <p>Complete tasks to earn coins that can be redeemed for exciting rewards.</p>
+                    </div>
+                    <div class="feature-item">
+                        <div class="feature-icon">
+                            <i class="fas fa-redo"></i>
+                        </div>
+                        <h3>Bounce Back</h3>
+                        <p>If you miss a day, we encourage you to start a new streak and keep going.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="section" id="motivational-memories">
+            <h2 class="section-title">Motivational Memories</h2>
+            <div class="card">
+                <div class="card-icon">
+                    <i class="fas fa-image"></i>
+                </div>
+                <h3>Capture Your Journey</h3>
+                <p>Every day you complete your task, our AI generates a unique motivational image based on your uploaded photo and a custom quote tailored to your journey.</p>
+                <img src="https://via.placeholder.com/600x400?text=AI-Generated+Motivational+Image" alt="AI-Generated Motivational Image" class="card-image">
+                <p>These daily memories become a visual diary of your progress. You can collect and download them to create a beautiful timeline of your habit-building journey.</p>
+            </div>
+        </div>
+
+        <div class="section" id="accountability">
+            <h2 class="section-title">Built-in Accountability</h2>
+            <div class="card">
+                <div class="card-icon">
+                    <i class="fas fa-user-check"></i>
+                </div>
+                <h3>AI-Powered Verification</h3>
+                <p>Our advanced AI technology verifies your task completion by analyzing your uploaded images. This ensures accuracy and provides you with a reliable tracking system.</p>
+                <img src="https://via.placeholder.com/600x300?text=AI+Verification+Process" alt="AI Verification Process" class="demo-image">
+                <p>If you miss a day, you'll receive a gentle reminder message encouraging you to get back on track:</p>
+                <div class="message-box">
+                    <div class="message-icon">
+                        <i class="fas fa-comment-alt"></i>
+                    </div>
+                    <div class="message-text">
+                        "We missed you today. Let's bounce back tomorrow and continue your amazing progress!"
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="cta-section">
+            <h2>Start Building Your Habit Today</h2>
+            <p>Your progress story begins now. Join thousands of others who are transforming their lives one habit at a time.</p>
+            <a href="index.html#journey" class="btn-primary">Start My Habit Journey</a>
+        </div>
+    </div>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-logo">
+                <h3>We Are Habit Builders</h3>
+                <p>Transform your life one habit at a time</p>
+            </div>
+            <div class="footer-links">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="services.html">Services</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-links">
+                <h4>Resources</h4>
+                <ul>
+                    <li><a href="rewards.html">Rewards</a></li>
+                    <li><a href="goal-setting.html">Goal Setting</a></li>
+                    <li><a href="#">Blog</a></li>
+                    <li><a href="#">FAQs</a></li>
+                </ul>
+            </div>
+            <div class="footer-newsletter">
+                <h4>Stay Updated</h4>
+                <form>
+                    <input type="email" placeholder="Enter your email">
+                    <button type="submit" class="btn btn-secondary">Subscribe</button>
+                </form>
+                <div class="social-icons">
+                    <a href="https://facebook.com/habitbuilders" target="_blank" rel="noopener noreferrer"><i class="fab fa-facebook"></i></a>
+                    <a href="https://twitter.com/habitbuilders" target="_blank" rel="noopener noreferrer"><i class="fab fa-twitter"></i></a>
+                    <a href="https://instagram.com/habitbuilders" target="_blank" rel="noopener noreferrer"><i class="fab fa-instagram"></i></a>
+                    <a href="https://youtube.com/habitbuilders" target="_blank" rel="noopener noreferrer"><i class="fab fa-youtube"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2023 We Are Habit Builders. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Intersection Observer for scroll animations
+            const sections = document.querySelectorAll('.section');
+            
+            const observerOptions = {
+                root: null,
+                rootMargin: '0px',
+                threshold: 0.1
+            };
+            
+            const observer = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, observerOptions);
+            
+            sections.forEach(section => {
+                observer.observe(section);
+            });
+
+            // Smooth scroll for navigation links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    const targetId = this.getAttribute('href');
+                    if (targetId === '#') return;
+                    
+                    const targetElement = document.querySelector(targetId);
+                    if (targetElement) {
+                        window.scrollTo({
+                            top: targetElement.offsetTop - 100,
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html> 

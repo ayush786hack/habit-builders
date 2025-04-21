@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Redeem Coins - We Are Habit Builders</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/redeem-coins.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .premium-section {
+            width: 100vw;
+            margin-left: calc(-50vw + 50%);
+            margin-right: calc(-50vw + 50%);
+            position: relative;
+            left: 50%;
+            right: 50%;
+            transform: translateX(-50%);
+        }
+
+        .premium-form-section {
+            width: 100vw;
+            margin-left: calc(-50vw + 50%);
+            margin-right: calc(-50vw + 50%);
+            position: relative;
+            left: 50%;
+            right: 50%;
+            transform: translateX(-50%);
+        }
+        
+        .roadmap-section {
+            margin-top: 3rem;
+        }
+
+        .premium-lock {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            border-radius: 15px;
+            z-index: 10;
+        }
+
+        .premium-lock i {
+            font-size: 2.5rem;
+            color: #ffd700;
+            margin-bottom: 10px;
+        }
+
+        .premium-lock p {
+            color: white;
+            text-align: center;
+            margin: 0;
+            padding: 0 20px;
+        }
+
+        .premium-lock .btn-premium {
+            margin-top: 15px;
+            background: linear-gradient(135deg, #ffd700 0%, #ffa500 100%);
+            color: #000;
+            border: none;
+            padding: 8px 20px;
+            border-radius: 20px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+
+        .premium-lock .btn-premium:hover {
+            transform: scale(1.05);
+        }
+
+        .reward-card {
+            position: relative;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="logo">
+                <span class="logo-text">We Are Habit Builders</span>
+            </div>
+            <div class="menu-toggle">
+                <i class="fas fa-bars"></i>
+            </div>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="services.html">Services</a></li>
+                <li><a href="goal-setting.html">Goal Setting</a></li>
+                <li><a href="rewards.html">Rewards</a></li>
+                <li><a href="redeem-coins.html" class="active">Redeem Coins</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <!-- Reward Roadmap Section -->
+        <section class="roadmap-section">
+            <h2 class="section-title">Your Reward Journey</h2>
+            <div class="roadmap-container">
+                <div class="roadmap-item">
+                    <div class="roadmap-icon">
+                        <img src="images/certificate.png" alt="Certificate of Consistency">
+                    </div>
+                    <div class="roadmap-content">
+                        <h3>1 Month</h3>
+                        <h4>Certificate of Consistency</h4>
+                        <p>Awarded after 750 coins (30 days × 25 coins/day). Personalized with your name!</p>
+                        <div class="roadmap-details">
+                            <div class="coin-count">
+                                <i class="fas fa-coins"></i>
+                                <span>750 Coins</span>
+                            </div>
+                            <div class="time-period">
+                                <i class="fas fa-calendar"></i>
+                                <span>30 Days</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="roadmap-item">
+                    <div class="roadmap-icon">
+                        <img src="images/silver.png" alt="Silver Trophy">
+                    </div>
+                    <div class="roadmap-content">
+                        <h3>3 Months</h3>
+                        <h4>Silver Trophy</h4>
+                        <p>Awarded for 2,250 coins (90 days). Features We Are Habit Builders branding.</p>
+                        <div class="roadmap-details">
+                            <div class="coin-count">
+                                <i class="fas fa-coins"></i>
+                                <span>2,250 Coins</span>
+                            </div>
+                            <div class="time-period">
+                                <i class="fas fa-calendar"></i>
+                                <span>90 Days</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="roadmap-item">
+                    <div class="roadmap-icon">
+                        <img src="images/gold.png" alt="Gold Trophy">
+                    </div>
+                    <div class="roadmap-content">
+                        <h3>6 Months</h3>
+                        <h4>Gold Trophy</h4>
+                        <p>Awarded for 4,500 coins (180 days). Represents major habit achievement.</p>
+                        <div class="roadmap-details">
+                            <div class="coin-count">
+                                <i class="fas fa-coins"></i>
+                                <span>4,500 Coins</span>
+                            </div>
+                            <div class="time-period">
+                                <i class="fas fa-calendar"></i>
+                                <span>180 Days</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="roadmap-item">
+                    <div class="roadmap-icon">
+                        <img src="images/diamond.png" alt="Diamond Trophy">
+                    </div>
+                    <div class="roadmap-content">
+                        <h3>12 Months</h3>
+                        <h4>Diamond Trophy</h4>
+                        <p>Awarded for 9,125 coins (365 days). Highest honor with premium visuals.</p>
+                        <div class="roadmap-details">
+                            <div class="coin-count">
+                                <i class="fas fa-coins"></i>
+                                <span>9,125 Coins</span>
+                            </div>
+                            <div class="time-period">
+                                <i class="fas fa-calendar"></i>
+                                <span>365 Days</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Premium Subscription Section -->
+        <section class="premium-section">
+            <div class="premium-content">
+                <h2>Unlock Premium Rewards</h2>
+                <div class="premium-benefits">
+                    <div class="benefit">
+                        <i class="fas fa-bolt"></i>
+                        <p>Faster coin multipliers</p>
+                    </div>
+                    <div class="benefit">
+                        <i class="fas fa-gem"></i>
+                        <p>Access to Diamond Trophy & exclusive challenges</p>
+                    </div>
+                    <div class="benefit">
+                        <i class="fas fa-headset"></i>
+                        <p>Personalized calls from mentors</p>
+                    </div>
+                </div>
+                <button class="btn btn-premium" data-scroll="premium-form">Upgrade to Premium</button>
+            </div>
+        </section>
+
+        <!-- Premium Subscription Form Section -->
+        <section id="premium-form" class="premium-form-section">
+            <div class="premium-form-container">
+                <div class="premium-form-content">
+                    <h2>Upgrade to Premium</h2>
+                    <p class="premium-subtitle">Choose your plan and unlock exclusive rewards</p>
+                    <div class="subscription-options">
+                        <div class="subscription-card monthly">
+                            <div class="subscription-header">
+                                <h3>Monthly Plan</h3>
+                                <div class="price">
+                                    <span class="amount">₹299</span>
+                                    <span class="period">/month</span>
+                                </div>
+                            </div>
+                            <div class="subscription-features">
+                                <ul>
+                                    <li><i class="fas fa-check"></i> 2x Coin Multiplier</li>
+                                    <li><i class="fas fa-check"></i> Early Access to New Rewards</li>
+                                    <li><i class="fas fa-check"></i> Exclusive Diamond Trophy</li>
+                                    <li><i class="fas fa-check"></i> Monthly Mentor Calls</li>
+                                    <li><i class="fas fa-check"></i> Priority Support</li>
+                                </ul>
+                            </div>
+                            <button class="btn btn-premium-submit">Subscribe Monthly</button>
+                        </div>
+
+                        <div class="subscription-card info-card">
+                            <div class="subscription-header">
+                                <h3>Why Premium?</h3>
+                                <div class="info-icon">
+                                    <i class="fas fa-heart"></i>
+                                </div>
+                            </div>
+                            <div class="subscription-features">
+                                <div class="info-content">
+                                    <h4>Your Support Makes a Difference</h4>
+                                    <p>When you subscribe to Premium, you're not just getting exclusive benefits - you're helping us create better rewards and experiences for everyone.</p>
+                                    <div class="funds-usage">
+                                        <div class="usage-item">
+                                            <i class="fas fa-gift"></i>
+                                            <span>90% - goes directly in making of these rewards, to give you the physical presence of your hard work</span>
+                                        </div>
+                                        <div class="usage-item">
+                                            <i class="fas fa-tools"></i>
+                                            <span>10% supports platform development</span>
+                                        </div>
+                                    </div>
+                                    <p class="impact-text">Your premium subscription helps us maintain high-quality rewards and create new opportunities for our community members to achieve their goals.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="subscription-card yearly">
+                            <div class="subscription-badge">Best Value</div>
+                            <div class="subscription-header">
+                                <h3>Yearly Plan</h3>
+                                <div class="price">
+                                    <span class="amount">₹2,499</span>
+                                    <span class="period">/year</span>
+                                </div>
+                                <div class="savings">Save ₹1,089</div>
+                            </div>
+                            <div class="subscription-features">
+                                <ul>
+                                    <li><i class="fas fa-check"></i> 2x Coin Multiplier</li>
+                                    <li><i class="fas fa-check"></i> Early Access to New Rewards</li>
+                                    <li><i class="fas fa-check"></i> Exclusive Diamond Trophy</li>
+                                    <li><i class="fas fa-check"></i> Monthly Mentor Calls</li>
+                                    <li><i class="fas fa-check"></i> Priority Support</li>
+                                    <li><i class="fas fa-check"></i> Annual Bonus: 500 Coins</li>
+                                </ul>
+                            </div>
+                            <button class="btn btn-premium-submit">Subscribe Yearly</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Available Rewards Section -->
+        <section class="rewards-section">
+            <div class="rewards-container">
+                <div class="reward-card">
+                    <div class="reward-image">
+                        <img src="images/certificate.png" alt="Certificate of Consistency">
+                    </div>
+                    <div class="reward-content">
+                        <h3>Certificate of Consistency</h3>
+                        <div class="time-requirement highlight">
+                            <i class="fas fa-clock"></i>
+                            <span>1 Month Achievement</span>
+                        </div>
+                        <div class="coin-cost">
+                            <i class="fas fa-coins"></i>
+                            <span>750 Coins</span>
+                        </div>
+                        <p class="reward-description">Earn this prestigious certificate after maintaining your habits for 1 month. A symbol of your dedication and commitment to personal growth.</p>
+                        <div class="progress-bar">
+                            <div class="progress" style="width: 25%"></div>
+                        </div>
+                        <button class="btn-redeem">Redeem Now</button>
+                    </div>
+                </div>
+                <div class="reward-card">
+                    <div class="reward-image">
+                        <img src="images/silver.png" alt="Silver Trophy">
+                    </div>
+                    <div class="reward-content">
+                        <h3>Silver Trophy</h3>
+                        <div class="time-requirement highlight">
+                            <i class="fas fa-clock"></i>
+                            <span>3 Months Achievement</span>
+                        </div>
+                        <div class="coin-cost">
+                            <i class="fas fa-coins"></i>
+                            <span>2,250 Coins</span>
+                        </div>
+                        <p class="reward-description">Achieve the Silver Trophy after 3 months of consistent habit building. A testament to your growing discipline and perseverance.</p>
+                        <div class="progress-bar">
+                            <div class="progress" style="width: 50%"></div>
+                        </div>
+                        <button class="btn-redeem">Redeem Now</button>
+                    </div>
+                    <div class="premium-lock">
+                        <i class="fas fa-lock"></i>
+                        <p>Premium Members Only</p>
+                        <button class="btn-premium" data-scroll="premium-form">Upgrade to Premium</button>
+                    </div>
+                </div>
+                <div class="reward-card">
+                    <div class="reward-image">
+                        <img src="images/gold.png" alt="Gold Trophy">
+                    </div>
+                    <div class="reward-content">
+                        <h3>Gold Trophy</h3>
+                        <div class="time-requirement highlight">
+                            <i class="fas fa-clock"></i>
+                            <span>6 Months Achievement</span>
+                        </div>
+                        <div class="coin-cost">
+                            <i class="fas fa-coins"></i>
+                            <span>4,500 Coins</span>
+                        </div>
+                        <p class="reward-description">Reach new heights with the Gold Trophy after 6 months of dedication. A symbol of your mastery and commitment to excellence.</p>
+                        <div class="progress-bar">
+                            <div class="progress" style="width: 75%"></div>
+                        </div>
+                        <button class="btn-redeem">Redeem Now</button>
+                    </div>
+                    <div class="premium-lock">
+                        <i class="fas fa-lock"></i>
+                        <p>Premium Members Only</p>
+                        <button class="btn-premium" data-scroll="premium-form">Upgrade to Premium</button>
+                    </div>
+                </div>
+                <div class="reward-card">
+                    <div class="reward-image">
+                        <img src="images/diamond.png" alt="Diamond Trophy">
+                    </div>
+                    <div class="reward-content">
+                        <h3>Diamond Trophy</h3>
+                        <div class="time-requirement highlight">
+                            <i class="fas fa-clock"></i>
+                            <span>12 Months Achievement</span>
+                        </div>
+                        <div class="coin-cost">
+                            <i class="fas fa-coins"></i>
+                            <span>9,125 Coins</span>
+                        </div>
+                        <p class="reward-description">The ultimate achievement! Earn the Diamond Trophy after a full year of unwavering commitment to your habits.</p>
+                        <div class="progress-bar">
+                            <div class="progress" style="width: 100%"></div>
+                        </div>
+                        <button class="btn-redeem">Redeem Now</button>
+                    </div>
+                    <div class="premium-lock">
+                        <i class="fas fa-lock"></i>
+                        <p>Premium Members Only</p>
+                        <button class="btn-premium" data-scroll="premium-form">Upgrade to Premium</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-logo">
+                <h3>We Are Habit Builders</h3>
+                <p>Transform your life one habit at a time</p>
+            </div>
+            <div class="footer-links">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="services.html">Services</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-links">
+                <h4>Resources</h4>
+                <ul>
+                    <li><a href="rewards.html">Rewards</a></li>
+                    <li><a href="#">Blog</a></li>
+                    <li><a href="#">FAQs</a></li>
+                </ul>
+            </div>
+            <div class="footer-newsletter">
+                <h4>Stay Updated</h4>
+                <form>
+                    <input type="email" placeholder="Enter your email">
+                    <button type="submit" class="btn btn-secondary">Subscribe</button>
+                </form>
+                <div class="social-icons">
+                    <a href="https://facebook.com/habitbuilders" target="_blank" rel="noopener noreferrer"><i class="fab fa-facebook"></i></a>
+                    <a href="https://twitter.com/habitbuilders" target="_blank" rel="noopener noreferrer"><i class="fab fa-twitter"></i></a>
+                    <a href="https://instagram.com/habitbuilders" target="_blank" rel="noopener noreferrer"><i class="fab fa-instagram"></i></a>
+                    <a href="https://youtube.com/habitbuilders" target="_blank" rel="noopener noreferrer"><i class="fab fa-youtube"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2023 We Are Habit Builders. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+</body>
+</html> 

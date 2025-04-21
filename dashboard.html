@@ -1,0 +1,1342 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - We Are Habit Builders</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/dashboard.css">
+    <link rel="stylesheet" href="css/dashboard-popup.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lucide@latest/dist/umd/lucide.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+    <script src="https://cdn.jsdelivr.net/npm/lucide@latest"></script>
+    <style>
+        .premium-lock {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            border-radius: 15px;
+            z-index: 10;
+        }
+
+        .premium-lock i {
+            font-size: 2.5rem;
+            color: #ffd700;
+            margin-bottom: 10px;
+        }
+
+        .premium-lock p {
+            color: white;
+            text-align: center;
+            margin: 0;
+            padding: 0 20px;
+        }
+
+        .premium-lock .btn-premium {
+            margin-top: 15px;
+            background: linear-gradient(135deg, #ffd700 0%, #ffa500 100%);
+            color: #000;
+            border: none;
+            padding: 8px 20px;
+            border-radius: 20px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+
+        .premium-lock .btn-premium:hover {
+            transform: scale(1.05);
+        }
+
+        .reward-item {
+            position: relative;
+        }
+        
+        /* Roadmap Styles */
+        .roadmap-container {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        
+        .roadmap-item {
+            display: flex;
+            background: #fff;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .roadmap-icon {
+            width: 120px;
+            min-width: 120px;
+            height: 120px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #f8f9fa;
+            padding: 1rem;
+        }
+        
+        .roadmap-icon img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+        }
+        
+        .roadmap-content {
+            padding: 1.5rem;
+            flex: 1;
+        }
+        
+        .roadmap-content h3 {
+            color: #6c757d;
+            font-size: 1rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .roadmap-content h4 {
+            color: #343a40;
+            font-size: 1.5rem;
+            margin-bottom: 0.75rem;
+        }
+        
+        .roadmap-content p {
+            color: #6c757d;
+            margin-bottom: 1rem;
+        }
+        
+        .roadmap-details {
+            display: flex;
+            gap: 1.5rem;
+        }
+        
+        .coin-count, .time-period {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: #495057;
+        }
+        
+        .coin-count i, .time-period i {
+            color: #ffc107;
+        }
+        
+        /* Premium Subscription Styles */
+        .premium-section {
+            background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
+            color: white;
+            padding: 3rem 2rem;
+            border-radius: 15px;
+            margin: 2rem 0;
+            text-align: center;
+        }
+        
+        .premium-content h2 {
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .premium-benefits {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+        
+        .benefit {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .benefit i {
+            font-size: 2rem;
+            color: #ffd700;
+        }
+        
+        .btn-premium {
+            background: linear-gradient(135deg, #ffd700 0%, #ffa500 100%);
+            color: #000;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 30px;
+            font-weight: bold;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+        
+        .btn-premium:hover {
+            transform: scale(1.05);
+        }
+        
+        .premium-form-section {
+            padding: 3rem 2rem;
+            background: #f8f9fa;
+            border-radius: 15px;
+            margin: 2rem 0;
+        }
+        
+        .premium-form-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .premium-form-content h2 {
+            text-align: center;
+            margin-bottom: 0.5rem;
+        }
+        
+        .premium-subtitle {
+            text-align: center;
+            color: #6c757d;
+            margin-bottom: 2rem;
+        }
+        
+        .subscription-options {
+            display: flex;
+            gap: 2rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        
+        .subscription-card {
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            padding: 2rem;
+            width: 300px;
+            position: relative;
+        }
+        
+        .subscription-badge {
+            position: absolute;
+            top: -10px;
+            right: 20px;
+            background: #ffd700;
+            color: #000;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-weight: bold;
+            font-size: 0.9rem;
+        }
+        
+        .subscription-header {
+            text-align: center;
+            margin-bottom: 1.5rem;
+        }
+        
+        .subscription-header h3 {
+            margin-bottom: 0.5rem;
+        }
+        
+        .price {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .amount {
+            font-weight: bold;
+            font-size: 2rem;
+        }
+        
+        .savings {
+            color: #28a745;
+            font-weight: bold;
+        }
+        
+        .subscription-features {
+            margin-bottom: 1.5rem;
+        }
+        
+        .subscription-features ul {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .subscription-features li {
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .subscription-features i {
+            color: #28a745;
+        }
+        
+        .btn-premium-submit {
+            width: 100%;
+            background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+        
+        .btn-premium-submit:hover {
+            transform: scale(1.05);
+        }
+        
+        .info-content {
+            text-align: center;
+        }
+        
+        .info-content h4 {
+            margin-bottom: 1rem;
+        }
+        
+        .funds-usage {
+            margin: 1.5rem 0;
+        }
+        
+        .usage-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .usage-item i {
+            color: #ffd700;
+        }
+        
+        .impact-text {
+            font-style: italic;
+        }
+
+        .target-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1rem;
+            border-bottom: 1px solid #eee;
+        }
+
+        .target-number {
+            background: #4CAF50;
+            color: white;
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 0.9rem;
+        }
+
+        .target-icon {
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #f8f9fa;
+            border-radius: 50%;
+            padding: 0.5rem;
+        }
+
+        .target-actions {
+            display: flex;
+            gap: 0.5rem;
+            margin-left: auto;
+        }
+
+        .btn-edit-target, .btn-delete-target {
+            background: none;
+            border: none;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .btn-edit-target {
+            color: #4CAF50;
+            background-color: rgba(76, 175, 80, 0.1);
+        }
+
+        .btn-delete-target {
+            color: #f44336;
+            background-color: rgba(244, 67, 54, 0.1);
+        }
+
+        .btn-edit-target:hover {
+            background-color: rgba(76, 175, 80, 0.2);
+            transform: scale(1.1);
+        }
+
+        .btn-delete-target:hover {
+            background-color: rgba(244, 67, 54, 0.2);
+            transform: scale(1.1);
+        }
+
+        /* Notification styles */
+        .notification {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            padding: 15px 20px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            z-index: 1000;
+            animation: slideIn 0.3s ease forwards;
+        }
+
+        .notification.success {
+            background-color: #4CAF50;
+            color: white;
+        }
+
+        .notification.error {
+            background-color: #f44336;
+            color: white;
+        }
+
+        .notification i {
+            font-size: 1.2rem;
+        }
+
+        @keyframes slideIn {
+            from {
+                transform: translateX(100%);
+                opacity: 0;
+            }
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+    </style>
+</head>
+<body class="light-theme">
+    <!-- Sidebar (Fixed on desktop, collapsible on mobile) -->
+    <aside class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <div class="logo">
+                <a href="index.html" class="logo-link">
+                    <span class="logo-text">We Are Habit Builders</span>
+                </a>
+            </div>
+            <button class="toggle-sidebar" id="toggleSidebar">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+        
+        <div class="profile-section">
+            <a href="#profile" class="profile-link">
+                <div class="profile-picture">
+                    <img src="images/User.png" alt="User Profile" id="sidebarProfilePic">
+                </div>
+                <div class="profile-info">
+                    <h3 id="sidebarUserName">Ankit</h3>
+                    <div class="coin-balance">
+                        <i class="fas fa-coins"></i>
+                        <span id="sidebarCoinCount">120</span> coins
+                    </div>
+                </div>
+            </a>
+        </div>
+        
+        <nav class="sidebar-nav">
+            <ul>
+                <li class="active">
+                    <a href="#dashboard">
+                        <i class="fas fa-home"></i>
+                        <span>Dashboard</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="my-tasks.html">
+                        <i class="fas fa-tasks"></i>
+                        <span>My Task</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="wallet.html">
+                        <i class="fas fa-wallet"></i>
+                        <span>Coin Wallet</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="premium-zone.html">
+                        <i class="fas fa-crown"></i>
+                        <span>Premium Zone</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#ai-profile">
+                        <i class="fas fa-robot"></i>
+                        <span>Your AI Profile</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#help">
+                        <i class="fas fa-question-circle"></i>
+                        <span>Help & Support</span>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+    </aside>
+
+    <!-- Main Content Area -->
+    <div class="main-content">
+        <!-- Top Navigation Bar -->
+        <header class="top-navbar">
+            <div class="navbar-left">
+                <div class="date-time">
+                    <i class="fas fa-calendar-alt"></i>
+                    <span id="currentDate">Monday, April 1, 2025</span>
+                    <span id="currentTime">12:00:00 PM</span>
+                </div>
+            </div>
+            <div class="navbar-right">
+                <div class="notification-bell">
+                    <i class="fas fa-bell"></i>
+                    <span class="notification-badge">3</span>
+                </div>
+                <div class="profile-picture">
+                    <img src="images/User.png" alt="User Profile" id="navbarProfilePic">
+                </div>
+            </div>
+        </header>
+
+        <!-- Dashboard Content -->
+        <main class="dashboard-content">
+            <div class="content-container">
+                <!-- Calendar and Stats Section -->
+                <section class="calendar-stats-section">
+                    <div class="calendar-container">
+                        <div class="calendar-header">
+                            <button class="calendar-nav" id="prevMonth"><i class="fas fa-chevron-left"></i></button>
+                            <h3 id="currentMonth">April 2025</h3>
+                            <button class="calendar-nav" id="nextMonth"><i class="fas fa-chevron-right"></i></button>
+                        </div>
+                        <div class="calendar-grid" id="calendarGrid">
+                            <!-- Calendar will be generated by JavaScript -->
+                        </div>
+                    </div>
+                    
+                    <div class="stats-container">
+                        <div class="streak-counter">
+                            <div class="streak-icon">
+                                <i class="fas fa-fire"></i>
+                            </div>
+                            <div class="streak-info">
+                                <h3>Current Streak</h3>
+                                <p class="streak-value">5 days</p>
+                                <p class="streak-best">Best: 12 days</p>
+                            </div>
+                        </div>
+                        
+                        <div class="performance-chart">
+                            <div class="performance-analysis">
+                                <div class="analysis-header">
+                                    <h4>Performance Analysis</h4>
+                                    <button class="btn btn-sm btn-outline" id="refreshAnalysis">
+                                        <i class="fas fa-sync-alt"></i> Refresh
+                                    </button>
+                                </div>
+                                <div class="analysis-stats">
+                                    <div class="stat-item">
+                                        <div class="stat-label">Average</div>
+                                        <div class="stat-value" id="avgPerformance">80%</div>
+                                    </div>
+                                    <div class="stat-item">
+                                        <div class="stat-label">Best Day</div>
+                                        <div class="stat-value" id="bestDay">Saturday (95%)</div>
+                                    </div>
+                                    <div class="stat-item">
+                                        <div class="stat-label">Improvement</div>
+                                        <div class="stat-value positive" id="performanceImprovement">+5%</div>
+                                    </div>
+                                </div>
+                                <div class="analysis-insights">
+                                    <h5>Insights</h5>
+                                    <ul id="performanceInsights">
+                                        <li>You perform best on weekends</li>
+                                        <li>Wednesday shows a dip in performance</li>
+                                        <li>Overall trend is improving</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Today's Targets Section -->
+                <section class="targets-section">
+                    <div class="section-header">
+                        <h2>Your Today's Targets</h2>
+                        <div class="target-actions">
+                            <button class="btn btn-primary" id="setNewTargetBtn">
+                                <i class="fas fa-plus"></i> Set New Target
+                            </button>
+                            <button class="btn btn-outline" id="editTargetsBtn">
+                                <i class="fas fa-edit"></i> Edit
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <div class="target-cards">
+                        <!-- Study Target Card -->
+                        <div class="target-card" data-category="study">
+                            <div class="target-header">
+                                <div class="target-number">1</div>
+                                <div class="target-icon">
+                                    <i class="fas fa-book"></i>
+                                </div>
+                                <div class="target-info">
+                                    <h3>Study</h3>
+                                    <h4>Complete Physics Chapter 5</h4>
+                                    <p>Finish the exercises and review the key concepts</p>
+                                </div>
+                                <span class="target-status pending">Pending</span>
+                                <div class="target-actions">
+                                    <button class="btn-edit-target" data-target-id="study">
+                                        <i class="fas fa-edit"></i>
+                                    </button>
+                                    <button class="btn-delete-target" data-target-id="study">
+                                        <i class="fas fa-trash"></i>
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="target-content">
+                                <div class="target-upload">
+                                    <div class="upload-section">
+                                        <h5>Before Task</h5>
+                                        <div class="upload-area">
+                                            <i class="fas fa-camera"></i>
+                                            <p>Click to upload</p>
+                                            <input type="file" class="file-input" accept="image/*">
+                                        </div>
+                                        <button class="btn btn-outline submit-btn">Submit</button>
+                                    </div>
+                                    <div class="upload-section">
+                                        <h5>After Task (5 images)</h5>
+                                        <div class="upload-area">
+                                            <i class="fas fa-camera"></i>
+                                            <p>Click to upload</p>
+                                            <input type="file" class="file-input" accept="image/*" multiple>
+                                        </div>
+                                        <button class="btn btn-outline submit-btn">Submit</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Fitness Target Card -->
+                        <div class="target-card" data-category="fitness">
+                            <div class="target-header">
+                                <div class="target-number">2</div>
+                                <div class="target-icon">
+                                    <i class="fas fa-dumbbell"></i>
+                                </div>
+                                <div class="target-info">
+                                    <h3>Fitness</h3>
+                                    <h4>30 Minutes Cardio</h4>
+                                    <p>Complete your daily cardio routine with proper form and intensity</p>
+                                </div>
+                                <span class="target-status pending">Pending</span>
+                                <div class="target-actions">
+                                    <button class="btn-edit-target" data-target-id="fitness">
+                                        <i class="fas fa-edit"></i>
+                                    </button>
+                                    <button class="btn-delete-target" data-target-id="fitness">
+                                        <i class="fas fa-trash"></i>
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="target-content">
+                                <div class="target-upload">
+                                    <div class="upload-section">
+                                        <h5>Before Task</h5>
+                                        <div class="upload-area">
+                                            <i class="fas fa-camera"></i>
+                                            <p>Click to upload</p>
+                                            <input type="file" class="file-input" accept="image/*">
+                                        </div>
+                                        <button class="btn btn-outline submit-btn">Submit</button>
+                                    </div>
+                                    <div class="upload-section">
+                                        <h5>After Task (5 images)</h5>
+                                        <div class="upload-area">
+                                            <i class="fas fa-camera"></i>
+                                            <p>Click to upload</p>
+                                            <input type="file" class="file-input" accept="image/*" multiple>
+                                        </div>
+                                        <button class="btn btn-outline submit-btn">Submit</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Yoga Target Card -->
+                        <div class="target-card" data-category="yoga">
+                            <div class="target-header">
+                                <div class="target-number">3</div>
+                                <div class="target-icon">
+                                    <i class="fas fa-pray"></i>
+                                </div>
+                                <div class="target-info">
+                                    <h3>Yoga</h3>
+                                    <h4>15 Minutes Meditation</h4>
+                                    <p>Practice mindfulness and deep breathing exercises</p>
+                                </div>
+                                <span class="target-status pending">Pending</span>
+                                <div class="target-actions">
+                                    <button class="btn-edit-target" data-target-id="yoga">
+                                        <i class="fas fa-edit"></i>
+                                    </button>
+                                    <button class="btn-delete-target" data-target-id="yoga">
+                                        <i class="fas fa-trash"></i>
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="target-content">
+                                <div class="target-upload">
+                                    <div class="upload-section">
+                                        <h5>Before Task</h5>
+                                        <div class="upload-area">
+                                            <i class="fas fa-camera"></i>
+                                            <p>Click to upload</p>
+                                            <input type="file" class="file-input" accept="image/*">
+                                        </div>
+                                        <button class="btn btn-outline submit-btn">Submit</button>
+                                    </div>
+                                    <div class="upload-section">
+                                        <h5>After Task (5 images)</h5>
+                                        <div class="upload-area">
+                                            <i class="fas fa-camera"></i>
+                                            <p>Click to upload</p>
+                                            <input type="file" class="file-input" accept="image/*" multiple>
+                                        </div>
+                                        <button class="btn btn-outline submit-btn">Submit</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Mental Fitness Target Card -->
+                        <div class="target-card" data-category="mental">
+                            <div class="target-header">
+                                <div class="target-number">4</div>
+                                <div class="target-icon">
+                                    <i class="fas fa-brain"></i>
+                                </div>
+                                <div class="target-info">
+                                    <h3>Mental Fitness</h3>
+                                    <h4>20 Minutes Journaling</h4>
+                                    <p>Write about your thoughts, feelings, and goals for the day</p>
+                                </div>
+                                <span class="target-status pending">Pending</span>
+                                <div class="target-actions">
+                                    <button class="btn-edit-target" data-target-id="mental">
+                                        <i class="fas fa-edit"></i>
+                                    </button>
+                                    <button class="btn-delete-target" data-target-id="mental">
+                                        <i class="fas fa-trash"></i>
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="target-content">
+                                <div class="target-upload">
+                                    <div class="upload-section">
+                                        <h5>Before Task</h5>
+                                        <div class="upload-area">
+                                            <i class="fas fa-camera"></i>
+                                            <p>Click to upload</p>
+                                            <input type="file" class="file-input" accept="image/*">
+                                        </div>
+                                        <button class="btn btn-outline submit-btn">Submit</button>
+                                    </div>
+                                    <div class="upload-section">
+                                        <h5>After Task (5 images)</h5>
+                                        <div class="upload-area">
+                                            <i class="fas fa-camera"></i>
+                                            <p>Click to upload</p>
+                                            <input type="file" class="file-input" accept="image/*" multiple>
+                                        </div>
+                                        <button class="btn btn-outline submit-btn">Submit</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Free Task Target Card -->
+                        <div class="target-card" data-category="free">
+                            <div class="target-header">
+                                <div class="target-number">5</div>
+                                <div class="target-icon">
+                                    <i class="fas fa-star"></i>
+                                </div>
+                                <div class="target-info">
+                                    <h3>Free Task</h3>
+                                    <h4>30 Minutes Reading</h4>
+                                    <p>Read a book or article of your choice for personal growth</p>
+                                </div>
+                                <span class="target-status pending">Pending</span>
+                                <div class="target-actions">
+                                    <button class="btn-edit-target" data-target-id="free">
+                                        <i class="fas fa-edit"></i>
+                                    </button>
+                                    <button class="btn-delete-target" data-target-id="free">
+                                        <i class="fas fa-trash"></i>
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="target-content">
+                                <div class="target-upload">
+                                    <div class="upload-section">
+                                        <h5>Before Task</h5>
+                                        <div class="upload-area">
+                                            <i class="fas fa-camera"></i>
+                                            <p>Click to upload</p>
+                                            <input type="file" class="file-input" accept="image/*">
+                                        </div>
+                                        <button class="btn btn-outline submit-btn">Submit</button>
+                                    </div>
+                                    <div class="upload-section">
+                                        <h5>After Task (5 images)</h5>
+                                        <div class="upload-area">
+                                            <i class="fas fa-camera"></i>
+                                            <p>Click to upload</p>
+                                            <input type="file" class="file-input" accept="image/*" multiple>
+                                        </div>
+                                        <button class="btn btn-outline submit-btn">Submit</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Rewards Section -->
+                <section class="rewards-section">
+                    <div class="section-header">
+                        <h2>Your Reward Journey</h2>
+                        <div class="reward-actions">
+                            <button class="btn btn-primary" id="redeemRewardsBtn">
+                                <i class="fas fa-gift"></i> Redeem Rewards
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <div class="rewards-container">
+                        <div class="rewards-overview">
+                            <div class="rewards-balance">
+                                <div class="balance-icon">
+                                    <i class="fas fa-coins"></i>
+                                </div>
+                                <div class="balance-info">
+                                    <h3>Your Coin Balance</h3>
+                                    <p class="balance-value"><span id="rewardsCoinCount">120</span> coins</p>
+                                </div>
+                            </div>
+                            
+                            <div class="rewards-progress">
+                                <h4>Progress to Next Milestone</h4>
+                                <div class="progress-bar">
+                                    <div class="progress" style="width: 60%;"></div>
+                                </div>
+                                <p class="progress-text">60/100 coins collected</p>
+                            </div>
+                        </div>
+                        
+                        <div class="roadmap-container">
+                            <div class="roadmap-item">
+                                <div class="roadmap-icon">
+                                    <img src="images/certificate.png" alt="Certificate of Consistency">
+                                </div>
+                                <div class="roadmap-content">
+                                    <h3>1 Month</h3>
+                                    <h4>Certificate of Consistency</h4>
+                                    <p>Awarded after 750 coins (30 days × 25 coins/day). Personalized with your name!</p>
+                                    <div class="roadmap-details">
+                                        <div class="coin-count">
+                                            <i class="fas fa-coins"></i>
+                                            <span>750 Coins</span>
+                                        </div>
+                                        <div class="time-period">
+                                            <i class="fas fa-calendar"></i>
+                                            <span>30 Days</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="roadmap-item">
+                                <div class="roadmap-icon">
+                                    <img src="images/silver.png" alt="Silver Trophy">
+                                </div>
+                                <div class="roadmap-content">
+                                    <h3>3 Months</h3>
+                                    <h4>Silver Trophy</h4>
+                                    <p>Awarded for 2,250 coins (90 days). Features We Are Habit Builders branding.</p>
+                                    <div class="roadmap-details">
+                                        <div class="coin-count">
+                                            <i class="fas fa-coins"></i>
+                                            <span>2,250 Coins</span>
+                                        </div>
+                                        <div class="time-period">
+                                            <i class="fas fa-calendar"></i>
+                                            <span>90 Days</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="premium-lock">
+                                    <i class="fas fa-lock"></i>
+                                    <p>Premium Members Only</p>
+                                    <button class="btn-premium">Upgrade to Premium</button>
+                                </div>
+                            </div>
+                            <div class="roadmap-item">
+                                <div class="roadmap-icon">
+                                    <img src="images/gold.png" alt="Gold Trophy">
+                                </div>
+                                <div class="roadmap-content">
+                                    <h3>6 Months</h3>
+                                    <h4>Gold Trophy</h4>
+                                    <p>Awarded for 4,500 coins (180 days). Represents major habit achievement.</p>
+                                    <div class="roadmap-details">
+                                        <div class="coin-count">
+                                            <i class="fas fa-coins"></i>
+                                            <span>4,500 Coins</span>
+                                        </div>
+                                        <div class="time-period">
+                                            <i class="fas fa-calendar"></i>
+                                            <span>180 Days</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="premium-lock">
+                                    <i class="fas fa-lock"></i>
+                                    <p>Premium Members Only</p>
+                                    <button class="btn-premium">Upgrade to Premium</button>
+                                </div>
+                            </div>
+                            <div class="roadmap-item">
+                                <div class="roadmap-icon">
+                                    <img src="images/diamond.png" alt="Diamond Trophy">
+                                </div>
+                                <div class="roadmap-content">
+                                    <h3>12 Months</h3>
+                                    <h4>Diamond Trophy</h4>
+                                    <p>Awarded for 9,125 coins (365 days). Highest honor with premium visuals.</p>
+                                    <div class="roadmap-details">
+                                        <div class="coin-count">
+                                            <i class="fas fa-coins"></i>
+                                            <span>9,125 Coins</span>
+                                        </div>
+                                        <div class="time-period">
+                                            <i class="fas fa-calendar"></i>
+                                            <span>365 Days</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="premium-lock">
+                                    <i class="fas fa-lock"></i>
+                                    <p>Premium Members Only</p>
+                                    <button class="btn-premium">Upgrade to Premium</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                
+                <!-- Premium Subscription Section -->
+                <section class="premium-section">
+                    <div class="premium-content">
+                        <h2>Unlock Premium Rewards</h2>
+                        <div class="premium-benefits">
+                            <div class="benefit">
+                                <i class="fas fa-bolt"></i>
+                                <p>Faster coin multipliers</p>
+                            </div>
+                            <div class="benefit">
+                                <i class="fas fa-gem"></i>
+                                <p>Access to Diamond Trophy & exclusive challenges</p>
+                            </div>
+                            <div class="benefit">
+                                <i class="fas fa-headset"></i>
+                                <p>Personalized calls from mentors</p>
+                            </div>
+                        </div>
+                        <button class="btn btn-premium" id="showPremiumForm">Upgrade to Premium</button>
+                    </div>
+                </section>
+
+                <!-- Premium Subscription Form Section -->
+                <section id="premium-form" class="premium-form-section" style="display: none;">
+                    <div class="premium-form-container">
+                        <div class="premium-form-content">
+                            <h2>Upgrade to Premium</h2>
+                            <p class="premium-subtitle">Choose your plan and unlock exclusive rewards</p>
+                            <div class="subscription-options">
+                                <div class="subscription-card monthly">
+                                    <div class="subscription-header">
+                                        <h3>Monthly Plan</h3>
+                                        <div class="price">
+                                            <span class="amount">₹299</span>
+                                            <span class="period">/month</span>
+                                        </div>
+                                    </div>
+                                    <div class="subscription-features">
+                                        <ul>
+                                            <li><i class="fas fa-check"></i> 2x Coin Multiplier</li>
+                                            <li><i class="fas fa-check"></i> Early Access to New Rewards</li>
+                                            <li><i class="fas fa-check"></i> Exclusive Diamond Trophy</li>
+                                            <li><i class="fas fa-check"></i> Monthly Mentor Calls</li>
+                                            <li><i class="fas fa-check"></i> Priority Support</li>
+                                        </ul>
+                                    </div>
+                                    <button class="btn btn-premium-submit">Subscribe Monthly</button>
+                                </div>
+
+                                <div class="subscription-card info-card">
+                                    <div class="subscription-header">
+                                        <h3>Why Premium?</h3>
+                                        <div class="info-icon">
+                                            <i class="fas fa-heart"></i>
+                                        </div>
+                                    </div>
+                                    <div class="subscription-features">
+                                        <div class="info-content">
+                                            <h4>Your Support Makes a Difference</h4>
+                                            <p>When you subscribe to Premium, you're not just getting exclusive benefits - you're helping us create better rewards and experiences for everyone.</p>
+                                            <div class="funds-usage">
+                                                <div class="usage-item">
+                                                    <i class="fas fa-gift"></i>
+                                                    <span>90% - goes directly in making of these rewards, to give you the physical presence of your hard work</span>
+                                                </div>
+                                                <div class="usage-item">
+                                                    <i class="fas fa-tools"></i>
+                                                    <span>10% supports platform development</span>
+                                                </div>
+                                            </div>
+                                            <p class="impact-text">Your premium subscription helps us maintain high-quality rewards and create new opportunities for our community members to achieve their goals.</p>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="subscription-card yearly">
+                                    <div class="subscription-badge">Best Value</div>
+                                    <div class="subscription-header">
+                                        <h3>Yearly Plan</h3>
+                                        <div class="price">
+                                            <span class="amount">₹2,499</span>
+                                            <span class="period">/year</span>
+                                        </div>
+                                        <div class="savings">Save ₹1,089</div>
+                                    </div>
+                                    <div class="subscription-features">
+                                        <ul>
+                                            <li><i class="fas fa-check"></i> 2x Coin Multiplier</li>
+                                            <li><i class="fas fa-check"></i> Early Access to New Rewards</li>
+                                            <li><i class="fas fa-check"></i> Exclusive Diamond Trophy</li>
+                                            <li><i class="fas fa-check"></i> Monthly Mentor Calls</li>
+                                            <li><i class="fas fa-check"></i> Priority Support</li>
+                                            <li><i class="fas fa-check"></i> Annual Bonus: 500 Coins</li>
+                                        </ul>
+                                    </div>
+                                    <button class="btn btn-premium-submit">Subscribe Yearly</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </main>
+    </div>
+
+    <!-- New Task Modal -->
+    <div class="modal" id="newTaskModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Set New Target</h2>
+                <button class="close-modal" id="closeModal">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form id="newTaskForm">
+                    <div class="form-group">
+                        <label for="taskCategory">Target Category</label>
+                        <select id="taskCategory" required>
+                            <option value="">Select Category</option>
+                            <option value="study">Study</option>
+                            <option value="fitness">Fitness</option>
+                            <option value="yoga">Yoga</option>
+                            <option value="mental">Mental Fitness</option>
+                            <option value="free">Free Task</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="taskTitle">Target Title</label>
+                        <input type="text" id="taskTitle" placeholder="Enter target title" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="taskDescription">Target Description</label>
+                        <textarea id="taskDescription" placeholder="Enter target description" required></textarea>
+                    </div>
+                    <div class="form-actions">
+                        <button type="button" class="btn btn-outline" id="cancelTask">Cancel</button>
+                        <button type="submit" class="btn btn-primary">Create Target</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        // Initialize calendar immediately
+        document.addEventListener('DOMContentLoaded', function() {
+            // Set initial date and time
+            function updateDateTime() {
+                const now = new Date(); // Use current date instead of hardcoded date
+                const dateDisplay = document.getElementById('currentDate');
+                const timeDisplay = document.getElementById('currentTime');
+                
+                if (dateDisplay) {
+                    dateDisplay.textContent = now.toLocaleDateString('en-US', {
+                        weekday: 'long',
+                        year: 'numeric',
+                        month: 'long',
+                        day: 'numeric'
+                    });
+                }
+                
+                if (timeDisplay) {
+                    timeDisplay.textContent = now.toLocaleTimeString('en-US', {
+                        hour: '2-digit',
+                        minute: '2-digit',
+                    });
+                }
+            }
+            
+            updateDateTime();
+            setInterval(updateDateTime, 1000);
+            
+            // Initialize calendar
+            initializeCalendar();
+
+            // Initialize edit buttons
+            function initializeEditButtons() {
+                const editButtons = document.querySelectorAll('.btn-edit-target');
+                editButtons.forEach(button => {
+                    button.addEventListener('click', function() {
+                        const targetId = this.getAttribute('data-target-id');
+                        const targetCard = document.querySelector(`.target-card[data-category="${targetId}"]`);
+                        if (targetCard) {
+                            const targetTitle = targetCard.querySelector('.target-info h4').textContent;
+                            const targetDescription = targetCard.querySelector('.target-info p').textContent;
+                            
+                            // Populate the modal with existing data
+                            const taskCategory = document.getElementById('taskCategory');
+                            const taskTitle = document.getElementById('taskTitle');
+                            const taskDescription = document.getElementById('taskDescription');
+                            
+                            if (taskCategory && taskTitle && taskDescription) {
+                                taskCategory.value = targetId;
+                                taskTitle.value = targetTitle;
+                                taskDescription.value = targetDescription;
+                                
+                                // Change modal title and button text
+                                const modalTitle = document.querySelector('.modal-header h2');
+                                const submitButton = document.querySelector('.modal-body button[type="submit"]');
+                                
+                                if (modalTitle) modalTitle.textContent = 'Edit Target';
+                                if (submitButton) submitButton.textContent = 'Update Target';
+                                
+                                // Show the modal
+                                const newTaskModal = document.getElementById('newTaskModal');
+                                if (newTaskModal) newTaskModal.style.display = 'flex';
+                            }
+                        }
+                    });
+                });
+            }
+
+            // Initialize delete buttons
+            function initializeDeleteButtons() {
+                const deleteButtons = document.querySelectorAll('.btn-delete-target');
+                deleteButtons.forEach(button => {
+                    button.addEventListener('click', function() {
+                        const targetId = this.getAttribute('data-target-id');
+                        const targetCard = document.querySelector(`.target-card[data-category="${targetId}"]`);
+                        
+                        if (confirm(`Are you sure you want to delete this target?`)) {
+                            // Animate the card before removing
+                            targetCard.style.transition = 'all 0.3s ease';
+                            targetCard.style.opacity = '0';
+                            targetCard.style.transform = 'scale(0.8)';
+                            
+                            setTimeout(() => {
+                                targetCard.remove();
+                                
+                                // Show success message
+                                const notification = document.createElement('div');
+                                notification.className = 'notification success';
+                                notification.innerHTML = `
+                                    <i class="fas fa-check-circle"></i>
+                                    <span>Target deleted successfully!</span>
+                                `;
+                                document.body.appendChild(notification);
+                                
+                                // Remove notification after 3 seconds
+                                setTimeout(() => {
+                                    notification.remove();
+                                }, 3000);
+                            }, 300);
+                        }
+                    });
+                });
+            }
+
+            // Initialize all button functionality
+            initializeEditButtons();
+            initializeDeleteButtons();
+
+            // Show/hide premium subscription form
+            const showPremiumFormBtn = document.getElementById('showPremiumForm');
+            const premiumForm = document.getElementById('premium-form');
+            
+            if (showPremiumFormBtn && premiumForm) {
+                showPremiumFormBtn.addEventListener('click', function() {
+                    premiumForm.style.display = 'block';
+                    premiumForm.scrollIntoView({ behavior: 'smooth' });
+                });
+            }
+            
+            // Add click event to all premium buttons
+            const premiumButtons = document.querySelectorAll('.btn-premium');
+            premiumButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    if (premiumForm) {
+                        premiumForm.style.display = 'block';
+                        premiumForm.scrollIntoView({ behavior: 'smooth' });
+                    }
+                });
+            });
+
+            // Close modal when clicking the close button
+            const closeModalBtn = document.getElementById('closeModal');
+            const cancelTaskBtn = document.getElementById('cancelTask');
+            const newTaskModal = document.getElementById('newTaskModal');
+            
+            if (closeModalBtn) {
+                closeModalBtn.addEventListener('click', function() {
+                    newTaskModal.style.display = 'none';
+                });
+            }
+            
+            if (cancelTaskBtn) {
+                cancelTaskBtn.addEventListener('click', function() {
+                    newTaskModal.style.display = 'none';
+                });
+            }
+            
+            // Close modal when clicking outside the modal content
+            window.addEventListener('click', function(event) {
+                if (event.target === newTaskModal) {
+                    newTaskModal.style.display = 'none';
+                }
+            });
+
+            // Reset modal when creating a new target
+            const setNewTargetBtn = document.getElementById('setNewTargetBtn');
+            if (setNewTargetBtn) {
+                setNewTargetBtn.addEventListener('click', function() {
+                    document.querySelector('.modal-header h2').textContent = 'Set New Target';
+                    document.querySelector('.modal-body button[type="submit"]').textContent = 'Create Target';
+                    document.getElementById('newTaskForm').reset();
+                });
+            }
+
+            // Handle form submission for both new and edit
+            const newTaskForm = document.getElementById('newTaskForm');
+            if (newTaskForm) {
+                newTaskForm.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    
+                    const category = document.getElementById('taskCategory').value;
+                    const title = document.getElementById('taskTitle').value;
+                    const description = document.getElementById('taskDescription').value;
+                    
+                    const isEditing = document.querySelector('.modal-header h2').textContent === 'Edit Target';
+                    
+                    if (isEditing) {
+                        // Update existing target
+                        const targetCard = document.querySelector(`.target-card[data-category="${category}"]`);
+                        if (targetCard) {
+                            targetCard.querySelector('.target-info h4').textContent = title;
+                            targetCard.querySelector('.target-info p').textContent = description;
+                            
+                            // Show success message
+                            const notification = document.createElement('div');
+                            notification.className = 'notification success';
+                            notification.innerHTML = `
+                                <i class="fas fa-check-circle"></i>
+                                <span>Target updated successfully!</span>
+                            `;
+                            document.body.appendChild(notification);
+                            
+                            // Remove notification after 3 seconds
+                            setTimeout(() => {
+                                notification.remove();
+                            }, 3000);
+                        }
+                    } else {
+                        // Create new target (this would typically be handled by backend)
+                        // For demo purposes, we'll just show a success message
+                        const notification = document.createElement('div');
+                        notification.className = 'notification success';
+                        notification.innerHTML = `
+                            <i class="fas fa-check-circle"></i>
+                            <span>New target created successfully!</span>
+                        `;
+                        document.body.appendChild(notification);
+                        
+                        // Remove notification after 3 seconds
+                        setTimeout(() => {
+                            notification.remove();
+                        }, 3000);
+                    }
+                    
+                    // Close the modal
+                    document.getElementById('newTaskModal').style.display = 'none';
+                });
+            }
+        });
+    </script>
+    <script src="js/dashboard.js"></script>
+    <script src="js/dashboard-popup.js"></script>
+</body>
+</html> 

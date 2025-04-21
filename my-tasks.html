@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Tasks - We Are Habit Builders</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/dashboard.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="js/main.js" defer></script>
+    <script src="js/navigation.js" defer></script>
+    <style>
+        /* Add smooth transition for the entire page */
+        body {
+            transition: opacity 0.3s ease;
+        }
+
+        .tasks-container {
+            padding: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .task-filters {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .filter-btn {
+            padding: 0.5rem 1rem;
+            border: none;
+            border-radius: 20px;
+            background: #f0f0f0;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .filter-btn.active {
+            background: #4CAF50;
+            color: white;
+        }
+
+        .task-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .task-card {
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+
+        .task-header {
+            padding: 1rem;
+            border-bottom: 1px solid #eee;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .task-icon {
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #f8f9fa;
+            border-radius: 50%;
+            padding: 0.5rem;
+        }
+
+        .task-info h3 {
+            margin: 0;
+            color: #333;
+        }
+
+        .task-info p {
+            margin: 0.5rem 0 0;
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+        .task-status {
+            margin-left: auto;
+            padding: 0.25rem 0.75rem;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            font-weight: bold;
+        }
+
+        .task-status.pending {
+            background: #fff3cd;
+            color: #856404;
+        }
+
+        .task-status.completed {
+            background: #d4edda;
+            color: #155724;
+        }
+
+        .task-content {
+            padding: 1rem;
+        }
+
+        .image-gallery {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .image-container {
+            position: relative;
+            aspect-ratio: 1;
+            border-radius: 10px;
+            overflow: hidden;
+            background: #f8f9fa;
+        }
+
+        .image-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .image-label {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 0.5rem;
+            background: rgba(0, 0, 0, 0.7);
+            color: white;
+            font-size: 0.8rem;
+            text-align: center;
+        }
+
+        .no-images {
+            grid-column: 1 / -1;
+            text-align: center;
+            padding: 2rem;
+            color: #666;
+        }
+
+        .task-actions {
+            padding: 1rem;
+            border-top: 1px solid #eee;
+            display: flex;
+            justify-content: flex-end;
+            gap: 1rem;
+        }
+
+        .btn-view-details {
+            padding: 0.5rem 1rem;
+            border: none;
+            border-radius: 5px;
+            background: #4CAF50;
+            color: white;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .btn-view-details:hover {
+            background: #45a049;
+        }
+
+        .empty-state {
+            text-align: center;
+            padding: 4rem 2rem;
+            color: #666;
+        }
+
+        .empty-state i {
+            font-size: 4rem;
+            color: #ddd;
+            margin-bottom: 1rem;
+        }
+
+        .empty-state h3 {
+            margin-bottom: 1rem;
+        }
+
+        .empty-state p {
+            margin-bottom: 2rem;
+        }
+
+        .btn-create-task {
+            padding: 0.75rem 1.5rem;
+            border: none;
+            border-radius: 5px;
+            background: #4CAF50;
+            color: white;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .btn-create-task:hover {
+            background: #45a049;
+        }
+    </style>
+</head>
+<body class="light-theme">
+    <!-- Sidebar -->
+    <aside class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <div class="logo">
+                <a href="index.html" class="logo-link">
+                    <span class="logo-text">We Are Habit Builders</span>
+                </a>
+            </div>
+            <button class="toggle-sidebar" id="toggleSidebar">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+        
+        <div class="profile-section">
+            <a href="#profile" class="profile-link">
+                <div class="profile-picture">
+                    <img src="images/User.png" alt="User Profile" id="sidebarProfilePic">
+                </div>
+                <div class="profile-info">
+                    <h3 id="sidebarUserName">Ankit</h3>
+                    <div class="coin-balance">
+                        <i class="fas fa-coins"></i>
+                        <span id="sidebarCoinCount">120</span> coins
+                    </div>
+                </div>
+            </a>
+        </div>
+        
+        <nav class="sidebar-nav">
+            <ul>
+                <li>
+                    <a href="dashboard.html">
+                        <i class="fas fa-home"></i>
+                        <span>Dashboard</span>
+                    </a>
+                </li>
+                <li class="active">
+                    <a href="my-tasks.html">
+                        <i class="fas fa-tasks"></i>
+                        <span>My Task</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="wallet.html">
+                        <i class="fas fa-wallet"></i>
+                        <span>Coin Wallet</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="premium-zone.html">
+                        <i class="fas fa-crown"></i>
+                        <span>Premium Zone</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#ai-profile">
+                        <i class="fas fa-robot"></i>
+                        <span>Your AI Profile</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#help">
+                        <i class="fas fa-question-circle"></i>
+                        <span>Help & Support</span>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+    </aside>
+
+    <!-- Main Content -->
+    <div class="main-content">
+        <header class="top-navbar">
+            <div class="navbar-left">
+                <h1>My Tasks</h1>
+            </div>
+            <div class="navbar-right">
+                <div class="notification-bell">
+                    <i class="fas fa-bell"></i>
+                    <span class="notification-badge">3</span>
+                </div>
+                <div class="profile-picture">
+                    <img src="images/User.png" alt="User Profile" id="navbarProfilePic">
+                </div>
+            </div>
+        </header>
+
+        <main class="tasks-container">
+            <div class="task-filters">
+                <button class="filter-btn active" data-filter="all">All Tasks</button>
+                <button class="filter-btn" data-filter="study">Study</button>
+                <button class="filter-btn" data-filter="fitness">Fitness</button>
+                <button class="filter-btn" data-filter="yoga">Yoga</button>
+                <button class="filter-btn" data-filter="mental">Mental</button>
+                <button class="filter-btn" data-filter="free">Free Task</button>
+            </div>
+
+            <div class="task-grid">
+                <!-- Study Task -->
+                <div class="task-card" data-category="study">
+                    <div class="task-header">
+                        <div class="task-icon">
+                            <i class="fas fa-book"></i>
+                        </div>
+                        <div class="task-info">
+                            <h3>Study</h3>
+                            <p>Complete Physics Chapter 5</p>
+                        </div>
+                        <span class="task-status pending">Pending</span>
+                    </div>
+                    <div class="task-content">
+                        <div class="image-gallery">
+                            <div class="image-container">
+                                <img src="images/study-before.jpg" alt="Before Task">
+                                <div class="image-label">Before Task</div>
+                            </div>
+                            <div class="image-container">
+                                <img src="images/study-after.jpg" alt="After Task">
+                                <div class="image-label">After Task</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="task-actions">
+                        <button class="btn-view-details">View Details</button>
+                    </div>
+                </div>
+
+                <!-- Fitness Task -->
+                <div class="task-card" data-category="fitness">
+                    <div class="task-header">
+                        <div class="task-icon">
+                            <i class="fas fa-dumbbell"></i>
+                        </div>
+                        <div class="task-info">
+                            <h3>Fitness</h3>
+                            <p>30 Minutes Cardio</p>
+                        </div>
+                        <span class="task-status completed">Completed</span>
+                    </div>
+                    <div class="task-content">
+                        <div class="image-gallery">
+                            <div class="image-container">
+                                <img src="images/fitness-before.jpg" alt="Before Task">
+                                <div class="image-label">Before Task</div>
+                            </div>
+                            <div class="image-container">
+                                <img src="images/fitness-after.jpg" alt="After Task">
+                                <div class="image-label">After Task</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="task-actions">
+                        <button class="btn-view-details">View Details</button>
+                    </div>
+                </div>
+
+                <!-- Yoga Task -->
+                <div class="task-card" data-category="yoga">
+                    <div class="task-header">
+                        <div class="task-icon">
+                            <i class="fas fa-pray"></i>
+                        </div>
+                        <div class="task-info">
+                            <h3>Yoga</h3>
+                            <p>15 Minutes Meditation</p>
+                        </div>
+                        <span class="task-status pending">Pending</span>
+                    </div>
+                    <div class="task-content">
+                        <div class="image-gallery">
+                            <div class="no-images">
+                                <i class="fas fa-camera"></i>
+                                <p>No images uploaded yet</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="task-actions">
+                        <button class="btn-view-details">View Details</button>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Filter functionality
+            const filterButtons = document.querySelectorAll('.filter-btn');
+            const taskCards = document.querySelectorAll('.task-card');
+
+            filterButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    // Remove active class from all buttons
+                    filterButtons.forEach(btn => btn.classList.remove('active'));
+                    // Add active class to clicked button
+                    this.classList.add('active');
+
+                    const filter = this.getAttribute('data-filter');
+
+                    taskCards.forEach(card => {
+                        if (filter === 'all' || card.getAttribute('data-category') === filter) {
+                            card.style.display = 'block';
+                        } else {
+                            card.style.display = 'none';
+                        }
+                    });
+                });
+            });
+
+            // View Details functionality
+            const viewDetailsButtons = document.querySelectorAll('.btn-view-details');
+            viewDetailsButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const taskCard = this.closest('.task-card');
+                    const taskTitle = taskCard.querySelector('.task-info h3').textContent;
+                    const taskDescription = taskCard.querySelector('.task-info p').textContent;
+                    
+                    // Here you would typically navigate to a detailed view
+                    // For now, we'll just show an alert
+                    alert(`Viewing details for ${taskTitle}: ${taskDescription}`);
+                });
+            });
+
+            // Ensure Coin Wallet link works
+            const walletLink = document.querySelector('a[href="wallet.html"]');
+            if (walletLink) {
+                walletLink.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    window.location.href = 'wallet.html';
+                });
+            }
+        });
+    </script>
+</body>
+</html> 

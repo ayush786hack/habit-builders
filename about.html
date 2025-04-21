@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us - We Are Habit Builders</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Add performance optimizations */
+        img {
+            will-change: transform;
+            backface-visibility: hidden;
+        }
+        
+        .team-member, .psychology-item, .feature-card, .testimonial-item {
+            will-change: transform;
+            backface-visibility: hidden;
+        }
+        
+        /* Optimize animations */
+        @media (prefers-reduced-motion: reduce) {
+            * {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+                scroll-behavior: auto !important;
+            }
+        }
+        
+        /* Faster scroll animations for all sections */
+        .mission-content, .mission-image, .psychology-item, 
+        .team-member, .testimonial-item, .section-title, .cta-content {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.3s ease-out, transform 0.3s ease-out;
+        }
+        
+        .mission-content.visible, .mission-image.visible, .psychology-item.visible, 
+        .team-member.visible, .testimonial-item.visible, 
+        .section-title.visible, .cta-content.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        /* Feature cards - always visible, no animations */
+        .feature-card {
+            opacity: 1;
+            transform: translateY(0);
+            transition: none;
+        }
+        
+        /* Faster staggered animations for grid items */
+        .psychology-item:nth-child(1) { transition-delay: 0.05s; }
+        .psychology-item:nth-child(2) { transition-delay: 0.1s; }
+        .psychology-item:nth-child(3) { transition-delay: 0.15s; }
+        .psychology-item:nth-child(4) { transition-delay: 0.2s; }
+        
+        .team-member:nth-child(1) { transition-delay: 0.05s; }
+        .team-member:nth-child(2) { transition-delay: 0.1s; }
+        .team-member:nth-child(3) { transition-delay: 0.15s; }
+        .team-member:nth-child(4) { transition-delay: 0.2s; }
+        
+        .testimonial-item:nth-child(1) { transition-delay: 0.05s; }
+        .testimonial-item:nth-child(2) { transition-delay: 0.1s; }
+        .testimonial-item:nth-child(3) { transition-delay: 0.15s; }
+        
+        /* Optimize specific sections */
+        .features-container {
+            content-visibility: auto;
+            contain-intrinsic-size: 0 300px;
+        }
+        
+        .team-grid, .testimonial-slider {
+            content-visibility: auto;
+            contain-intrinsic-size: 0 500px;
+        }
+        
+        /* Reduce initial load for off-screen content */
+        .about-features {
+            content-visibility: auto;
+            contain-intrinsic-size: 0 400px;
+        }
+        
+        .about-team, .testimonials {
+            content-visibility: auto;
+            contain-intrinsic-size: 0 800px;
+        }
+        
+        /* Optimize images further */
+        .member-image img, .testimonial-author img {
+            transform: translateZ(0);
+            -webkit-transform: translateZ(0);
+        }
+        
+        /* Reduce animation complexity */
+        .team-member, .testimonial-item {
+            transition: transform 0.3s ease-out, opacity 0.3s ease-out;
+        }
+        
+        /* Optimize for mobile */
+        @media (max-width: 768px) {
+            .features-container, .team-grid, .testimonial-slider {
+                contain-intrinsic-size: 0 300px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="logo">
+                <span class="logo-text">We Are Habit Builders</span>
+            </div>
+            <div class="menu-toggle">
+                <i class="fas fa-bars"></i>
+            </div>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html" class="active">About</a></li>
+                <li><a href="services.html">Services</a></li>
+                <li><a href="goal-setting.html">Goal Setting</a></li>
+                <li><a href="rewards.html">Rewards</a></li>
+                <li><a href="redeem-coins.html">Redeem Coins</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section class="page-header">
+            <div class="page-header-content">
+                <h1>About Us</h1>
+                <p>Learn about our mission to help you build better habits.</p>
+            </div>
+        </section>
+
+        <section class="about-mission">
+            <div class="container">
+                <div class="mission-content">
+                    <h2 class="section-title">Our Mission</h2>
+                    <p class="mission-text">
+                        At <strong>We Are Habit Builders</strong>, we believe that small, consistent actions lead to remarkable life transformations. Our mission is to empower students and individuals to develop positive habits through science-backed methods, supportive community, and innovative technology.
+                    </p>
+                    <p class="mission-text">
+                        We understand that lasting change doesn't happen overnight. It's built day by day, habit by habit. That's why we've created a platform that makes habit tracking engaging, rewarding, and effective.
+                    </p>
+                </div>
+                <div class="mission-image">
+                    <img src="images/Our Mission.png" alt="Our mission" loading="lazy" width="600" height="400">
+                </div>
+            </div>
+        </section>
+
+        <section class="about-psychology">
+            <div class="container">
+                <h2 class="section-title">The Psychology of Habits</h2>
+                <div class="psychology-content">
+                    <div class="psychology-item">
+                        <div class="psychology-icon">
+                            <i class="fas fa-brain"></i>
+                        </div>
+                        <h3>Habit Loop</h3>
+                        <p>Habits follow a neurological loop: Cue, Craving, Response, and Reward. Our platform helps you identify these components to build better habits.</p>
+                    </div>
+                    <div class="psychology-item">
+                        <div class="psychology-icon">
+                            <i class="fas fa-chart-line"></i>
+                        </div>
+                        <h3>Compound Effect</h3>
+                        <p>Small improvements compound over time. 1% better each day leads to remarkable results over months and years.</p>
+                    </div>
+                    <div class="psychology-item">
+                        <div class="psychology-icon">
+                            <i class="fas fa-clock"></i>
+                        </div>
+                        <h3>Consistency</h3>
+                        <p>Consistency is more important than intensity. Our platform helps you maintain daily consistency for long-term success.</p>
+                    </div>
+                    <div class="psychology-item">
+                        <div class="psychology-icon">
+                            <i class="fas fa-users"></i>
+                        </div>
+                        <h3>Accountability</h3>
+                        <p>Social accountability increases success rates. Our community features keep you motivated and engaged.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="about-features">
+            <div class="container">
+                <h2 class="section-title">Our Platform Features</h2>
+                <div class="features-container">
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-bullseye"></i>
+                        </div>
+                        <h3>Goal Setting</h3>
+                        <p>Set clear, achievable goals with our guided system that helps you create habits aligned with your aspirations.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-robot"></i>
+                        </div>
+                        <h3>AI Guidance</h3>
+                        <p>Get personalized recommendations and insights from our AI assistant to optimize your habit-building journey.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-lightbulb"></i>
+                        </div>
+                        <h3>Daily Motivation</h3>
+                        <p>Stay inspired with daily quotes, challenges, and reminders that keep your momentum going even on tough days.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-coins"></i>
+                        </div>
+                        <h3>Reward System</h3>
+                        <p>Earn coins for completed habits and redeem them for motivational rewards that reinforce your positive behaviors.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="team-section">
+            <div class="container">
+                <h2 class="section-title">Meet Our Team</h2>
+                <div class="team-grid">
+                    <div class="team-member">
+                        <div class="member-image">
+                            <img src="images/Ayush Verma.png?v=2" alt="Ayush Verma - Frontend Development with AI Tools" loading="lazy" width="200" height="200" style="object-fit: contain;" fetchpriority="low">
+                        </div>
+                        <h3>Ayush Verma</h3>
+                        <p class="member-role">Frontend Development with AI Tools</p>
+                        <p class="member-desc">Expert in creating responsive and interactive user interfaces with modern AI integration.</p>
+                    </div>
+                    <div class="team-member">
+                        <div class="member-image">
+                            <img src="images/team-2.jpg" alt="Team member" loading="lazy" width="200" height="200" fetchpriority="low">
+                        </div>
+                        <h3>Ayush Tiwari</h3>
+                        <p class="member-role">Backend Development</p>
+                        <p class="member-desc">Specialist in robust server architecture and database optimization for seamless user experiences.</p>
+                    </div>
+                    <div class="team-member">
+                        <div class="member-image">
+                            <img src="images/rohit.jpg" alt="Rohit - Visual Content Strategist" loading="lazy" width="200" height="200" fetchpriority="low">
+                        </div>
+                        <h3>Rohit</h3>
+                        <p class="member-role">Visual Content Strategist</p>
+                        <p class="member-desc">Design expert who creates visually appealing content that enhances user experience and engagement. Manages user feedback and implements design improvements based on community input.</p>
+                    </div>
+                    <div class="team-member">
+                        <div class="member-image">
+                            <img src="images/team-4.jpg" alt="Team member" loading="lazy" width="200" height="200" fetchpriority="low">
+                        </div>
+                        <h3>Harshit Verma</h3>
+                        <p class="member-role">Digital Asset Specialist</p>
+                        <p class="member-desc">Oversees content management and ensures user opinions are incorporated into our visual strategy.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="testimonials">
+            <div class="container">
+                <h2 class="section-title">What Our Users Say</h2>
+                <div class="testimonial-slider">
+                    <div class="testimonial-item">
+                        <div class="testimonial-content">
+                            <p class="testimonial-text">"This platform completely changed how I approach my studies. By building consistent study habits, I improved my grades and reduced my stress levels dramatically."</p>
+                            <div class="testimonial-author">
+                                <img src="images/testimonial-1.jpg" alt="Testimonial author" loading="lazy" width="60" height="60" fetchpriority="low">
+                                <div class="author-info">
+                                    <h4>Alex T.</h4>
+                                    <p>College Student</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="testimonial-item">
+                        <div class="testimonial-content">
+                            <p class="testimonial-text">"The coin reward system kept me motivated during the first difficult weeks of building my exercise habit. Now, 6 months later, I can't imagine a day without my workout routine!"</p>
+                            <div class="testimonial-author">
+                                <img src="images/testimonial-2.jpg" alt="Testimonial author" loading="lazy" width="60" height="60" fetchpriority="low">
+                                <div class="author-info">
+                                    <h4>Maria K.</h4>
+                                    <p>Fitness Enthusiast</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="testimonial-item">
+                        <div class="testimonial-content">
+                            <p class="testimonial-text">"I tried many habit trackers before, but this one actually helped me stick with my goals. The combination of AI guidance and the visual progress tracking makes all the difference."</p>
+                            <div class="testimonial-author">
+                                <img src="images/testimonial-3.jpg" alt="Testimonial author" loading="lazy" width="60" height="60" fetchpriority="low">
+                                <div class="author-info">
+                                    <h4>Carlos M.</h4>
+                                    <p>Entrepreneur</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-controls">
+                    <button class="prev-btn"><i class="fas fa-chevron-left"></i></button>
+                    <button class="next-btn"><i class="fas fa-chevron-right"></i></button>
+                </div>
+            </div>
+        </section>
+
+        <section class="cta">
+            <div class="cta-content">
+                <h2>Ready to Build Better Habits?</h2>
+                <p>Join thousands of others who are transforming their lives one habit at a time.</p>
+                <a href="index.html?from=services" class="btn btn-primary">Get Started Now</a>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-logo">
+                <h3>We Are Habit Builders</h3>
+                <p>Transform your life one habit at a time</p>
+            </div>
+            <div class="footer-links">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="services.html">Services</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-links">
+                <h4>Resources</h4>
+                <ul>
+                    <li><a href="rewards.html">Rewards</a></li>
+                    <li><a href="#">Blog</a></li>
+                    <li><a href="#">FAQs</a></li>
+                </ul>
+            </div>
+            <div class="footer-newsletter">
+                <h4>Stay Updated</h4>
+                <form>
+                    <input type="email" placeholder="Enter your email">
+                    <button type="submit" class="btn btn-secondary">Subscribe</button>
+                </form>
+                <div class="social-icons">
+                    <a href="#"><i class="fab fa-facebook"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-youtube"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2023 We Are Habit Builders. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="js/main.js" defer></script>
+    <script src="js/about.js" defer></script>
+    <script>
+        // Optimize scrolling performance
+        document.addEventListener('DOMContentLoaded', function() {
+            // Use Intersection Observer for smooth animations with higher threshold
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                    }
+                });
+            }, {
+                threshold: 0.05, // Lower threshold to trigger animations earlier
+                rootMargin: '100px' // Larger margin to start loading content earlier
+            });
+            
+            // Observe all elements that need animation EXCEPT feature cards
+            document.querySelectorAll('.mission-content, .mission-image, .psychology-item, .team-member, .testimonial-item, .section-title, .cta-content').forEach(el => {
+                observer.observe(el);
+            });
+            
+            // Pre-load visible content immediately
+            const preloadVisibleContent = () => {
+                const elements = document.querySelectorAll('.mission-content, .mission-image, .psychology-item, .team-member, .testimonial-item, .section-title, .cta-content');
+                elements.forEach(el => {
+                    const rect = el.getBoundingClientRect();
+                    if (rect.top < window.innerHeight + 200) {
+                        el.classList.add('visible');
+                    }
+                });
+            };
+            
+            // Run preload immediately
+            preloadVisibleContent();
+            
+            // Make feature cards always visible
+            const featureCards = document.querySelectorAll('.feature-card');
+            featureCards.forEach(card => {
+                card.classList.add('visible');
+            });
+            
+            // Optimize testimonial slider with throttling
+            const testimonialSlider = document.querySelector('.testimonial-slider');
+            if (testimonialSlider) {
+                let isScrolling = false;
+                let startX;
+                let scrollLeft;
+                let lastScrollTime = 0;
+                
+                // Throttle function to limit how often the scroll event fires
+                function throttle(callback, limit) {
+                    let waiting = false;
+                    return function() {
+                        if (!waiting) {
+                            callback.apply(this, arguments);
+                            waiting = true;
+                            setTimeout(() => {
+                                waiting = false;
+                            }, limit);
+                        }
+                    }
+                }
+                
+                testimonialSlider.addEventListener('mousedown', (e) => {
+                    isScrolling = true;
+                    startX = e.pageX - testimonialSlider.offsetLeft;
+                    scrollLeft = testimonialSlider.scrollLeft;
+                });
+                
+                testimonialSlider.addEventListener('mouseleave', () => {
+                    isScrolling = false;
+                });
+                
+                testimonialSlider.addEventListener('mouseup', () => {
+                    isScrolling = false;
+                });
+                
+                testimonialSlider.addEventListener('mousemove', throttle((e) => {
+                    if (!isScrolling) return;
+                    e.preventDefault();
+                    const x = e.pageX - testimonialSlider.offsetLeft;
+                    const walk = (x - startX) * 2;
+                    testimonialSlider.scrollLeft = scrollLeft - walk;
+                }, 16)); // Throttle to ~60fps
+            }
+            
+            // Optimize scroll performance
+            let ticking = false;
+            window.addEventListener('scroll', function() {
+                if (!ticking) {
+                    window.requestAnimationFrame(function() {
+                        // Handle scroll-based animations here
+                        ticking = false;
+                    });
+                    ticking = true;
+                }
+            });
+            
+            // Defer loading of off-screen content
+            const loadOffScreenContent = () => {
+                const sections = document.querySelectorAll('.about-features, .about-team, .testimonials');
+                sections.forEach(section => {
+                    if (section.getBoundingClientRect().top < window.innerHeight + 500) {
+                        section.classList.add('loaded');
+                    }
+                });
+            };
+            
+            // Initial check for off-screen content
+            loadOffScreenContent();
+            
+            // Check again on scroll
+            window.addEventListener('scroll', throttle(loadOffScreenContent, 100)); // Reduced throttle time
+        });
+    </script>
+</body>
+</html> 
